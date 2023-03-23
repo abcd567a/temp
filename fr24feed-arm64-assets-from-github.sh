@@ -1,83 +1,29 @@
 #!/bin/bash
-
-ASSETS_FOLDER=/usr/share/fr24-assets
-FR24_ARMHF_DEB_PACKAGE=fr24feed_1.0.37-0_armhf.deb
-
 echo "Adding architecture armhf...."
 sudo dpkg --add-architecture armhf
 
+ASSETS_FOLDER=/usr/share/fr24-assets
 echo "Creating folder fr24-assets"
 sudo mkdir ${ASSETS_FOLDER}
-echo "Downloading fr24feed armhf package from Flightradar24"
-sudo wget -O ${ASSETS_FOLDER}/${FR24_ARMHF_DEB_PACKAGE} "http://repo-feed.flightradar24.com/rpi_binaries/${FR24_ARMHF_DEB_PACKAGE}"
 
-echo "Unzipping downloaded file"
-sudo dpkg-deb -R ${ASSETS_FOLDER}/${FR24_ARMHF_DEB_PACKAGE} ${ASSETS_FOLDER}
-sudo cp ${ASSETS_FOLDER}/usr/bin/* /usr/bin/ 
+echo "Downloading fr24feed armhf assets from github"
+wget -O ${ASSETS_FOLDER}/fr24feed "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/fr24feed_1.0.34-0_armhf"
+wget -O ${ASSETS_FOLDER}/fr24feed "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/fr24feed_1.0.37-0_armhf"
+wget -O ${ASSETS_FOLDER}/fr24feed.ini "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/fr24feed.ini"
+wget -O ${ASSETS_FOLDER}/fr24feed.service "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/fr24feed.service"
+wget -O ${ASSETS_FOLDER}/init-functions "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/init-functions"
+wget -O ${ASSETS_FOLDER}/fr24feed-status "https://github.com/abcd567a/fr24feed-Linux-ARM64/raw/master/fr24feed-status"
 
-echo -e "\e[32mCreating necessary files for fr24feed......\e[39m"
-
-CONFIG_FILE=/etc/fr24feed.ini
-sudo touch ${CONFIG_FILE}
-sudo chmod 666 ${CONFIG_FILE}
-echo "Writing code to config file fr24feed.ini"
-/bin/cat << \EOM >${CONFIG_FILE}
-receiver="avr-tcp"
-host="127.0.0.1:30002"
-bs="no"
-raw="no"
-logmode="1"
-logpath="/var/log/fr24feed"
-mlat="yes"
-mlat-without-gps="yes"
-EOM
-sudo chmod 644 ${CONFIG_FILE}
-
-SERVICE_FILE=/etc/systemd/system/fr24feed.service
-sudo touch ${SERVICE_FILE}
-sudo chmod 666 ${SERVICE_FILE}
-/bin/cat << \EOM >${SERVICE_FILE}
-[Unit]
-Description=Flightradar24 Feeder
-After=network-online.target
-
-[Service]
-Type=simple
-Restart=always
-LimitCORE=infinity
-RuntimeDirectory=fr24feed
-RuntimeDirectoryMode=0755
-ExecStartPre=-/bin/mkdir -p /var/log/fr24feed
-ExecStartPre=-/bin/mkdir -p /run/fr24feed
-ExecStartPre=-/bin/touch /dev/shm/decoder.txt
-ExecStartPre=-/bin/chown fr24 /dev/shm/decoder.txt /run/fr24feed /var/log/fr24feed
-ExecStart=/usr/bin/fr24feed
-User=fr24
-PermissionsStartOnly=true
-StandardOutput=null
-
-[Install]
-WantedBy=multi-user.target
-EOM
-sudo chmod 644 ${SERVICE_FILE}
-
-sudo useradd --system fr24
-
-sudo systemctl enable fr24feed
-
-
-wget -O ${ASSETS_FOLDER}/init-functions "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions"
-wget -O ${ASSETS_FOLDER}/00-verbose "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/00-verbose"
-wget -O ${ASSETS_FOLDER}/40-systemd "https://github.com/abcd567a/fr24feed-Fedora-OpenSUSE-CentOS-amd64/raw/main/fr24/init-functions.d/40-systemd"
+echo "copying files from assets folder to appropriate folders..."
+sudo cp ${ASSETS_FOLDER}/fr24feed_1.0.34-0_armhf /usr/bin/fr24feed
+sudo cp ${ASSETS_FOLDER}/fr24feed-status /usr/bin/fr24feed-status
+sudo cp ${ASSETS_FOLDER}/fr24feed.ini /etc/fr24feed.ini;
+sudo cp ${ASSETS_FOLDER}/fr24feed.service /etc/systemd/system/fr24feed.service;
 
 INIT_FUNCTIONS_FOLDER=/lib/lsb
 if [[ ! ${INIT_FUNCTIONS_FOLDER} ]]; then 
 sudo mkdir -p ${INIT_FUNCTIONS_FOLDER}; 
 sudo cp ${ASSETS_FOLDER}/init-functions ${INIT_FUNCTIONS_FOLDER}/init-functions;
-INIT_FUNCTIONS_D_FOLDER=${INIT_FUNCTIONS_FOLDER}/init-functions.d
-sudo mkdir -p ${INIT_FUNCTIONS_D_FOLDER}
-sudo cp ${ASSETS_FOLDER}/00-verbose ${INIT_FUNCTIONS_D_FOLDER}/00-verbose
-sudo cp ${ASSETS_FOLDER}/40-systemd ${INIT_FUNCTIONS_D_FOLDER}/40-systemd
 fi
 
 echo -e "\e[32mCreation of necessary files of \"fr24feed\" completed...\e[39m"
