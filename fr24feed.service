@@ -1,0 +1,20 @@
+[Unit]
+Description=Flightradar24 Decoder & Feeder
+After=network-online.target
+
+[Service]
+Type=simple
+Restart=always
+LimitCORE=infinity
+ExecStartPre=-/usr/lib/fr24/install_dump1090.sh
+ExecStartPre=-/usr/lib/fr24/unregister_kernel_modules.sh
+ExecStartPre=-/usr/lib/fr24/create_missing_directories.sh
+ExecStart=/usr/bin/fr24feed
+User=fr24
+Group=fr24
+PermissionsStartOnly=true
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+
