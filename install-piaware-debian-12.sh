@@ -18,9 +18,6 @@ if [[ ${OS_VERSION} == bookworm ]]; then
   OS_VERSION=bullseye
 
 ## UBUNTU
-elif [[ ${OS_VERSION} == kinetic ]]; then
-  OS_VERSION=bullseye
-
 elif [[ ${OS_VERSION} == lunar ]]; then
   OS_VERSION=bullseye
 
