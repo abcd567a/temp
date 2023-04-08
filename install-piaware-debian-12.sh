@@ -105,8 +105,13 @@ sudo sed -i 's/python3-dev(>=3.9)/python3-dev/' debian/control
 sudo sed -i 's/tcl-tls (>= 1.7.22-2)/tcl-tls/' debian/control
 
 sudo sed -i  's/include <eval.h>/include <ceval.h>/' cx_Freeze-6.8.3/source/bases/Common.c
-sudo sed -i '/mlat-client/s/^/#/' debian/rules
 
+sudo sed -i  's/ clean_mlat-client / /' debian/rules
+sudo sed -i  's/ build_mlat-client / /' debian/rules
+sudo sed -i  's/ install_mlat-client / /' debian/rules
+sudo sed -i '/cd mlat-client/s/^/#/' piaware_builder/package-bullseye/debian/rules
+sudo sed -i '/fa-mlat-client/s/^/#/' debian/rules
+sudo sed -i '/freeze-mlat-client/s/^/#/' piaware_builder/package-bullseye/debian/rules
 
 sudo dpkg-buildpackage -b --no-sign 
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
