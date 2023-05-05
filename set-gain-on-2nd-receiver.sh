@@ -56,7 +56,7 @@ echo '  </iframe>'
 echo '  </div> <!----- GAIN --->'
 echo ""
 echo -e "(2.3) Save & Close file.  "
-echo -e '\e[1;31mREBOOT PI ... REBOOT PI ... REBOOT PI ... \e[39m'
-echo -e "\e[1;95m(2.4) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/ \e[39m"
-echo -e "\e[1;32m(2.5) Clear Browser cache (Ctrl+Shift+Delete) & Reload browser (Ctrl+F5) \e[39m"
+echo -e '\e[1;31m(2.4) REBOOT PI ... REBOOT PI ... REBOOT PI ... \e[39m'
+echo -e "\e[1;95m(2.5) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/ \e[39m"
+echo -e "\e[1;32m(2.6) Clear Browser cache (Ctrl+Shift+Delete) & Reload browser (Ctrl+F5) \e[39m"
 
