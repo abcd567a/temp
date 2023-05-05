@@ -46,8 +46,8 @@ echo ""
 echo "Press Ctrl+W and type "buttonContainer" and press Enter key "
 echo 'the cursor will jump to <div class="buttonContainer">'
 echo -e '\e[95mInsert\e[39m following 3 lines \e[95mJUST ABOVE\e[39m the line \e[32m<div class="buttonContainer"> \e[39m'
-echo -e '\e[95mIf these lines are already there, then in line starting with "<iframe src=", \e[39m'
-echo -e '\e[95mCHANGE gain.php to gain2.php \e[39m'
+echo -e '\e[1;95mIf these lines are already there, then in line \e[39m'
+echo -e '\e[1;95mstarting with "<iframe src=", CHANGE gain.php to gain2.php \e[39m'
 
 echo ""
 echo '  <div id="GAIN" style="text-align:center;width:175px;height:65px;">'
@@ -56,6 +56,7 @@ echo '  </iframe>'
 echo '  </div> <!----- GAIN --->'
 echo ""
 echo -e "(2.3) Save & Close file.  "
-echo -e "\e[95m(2.4) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/ \e[39m"
-echo -e "\e[32m(2.5) Clear Browser cache (Ctrl+Shift+Delete) & Reload browser (Ctrl+F5) \e[39m"
+echo -e '\e[1;31mREBOOT PI ... REBOOT PI ... REBOOT PI ... \e[39m'
+echo -e "\e[1;95m(2.4) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/ \e[39m"
+echo -e "\e[1;32m(2.5) Clear Browser cache (Ctrl+Shift+Delete) & Reload browser (Ctrl+F5) \e[39m"
 
