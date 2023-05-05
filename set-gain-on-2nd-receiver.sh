@@ -45,11 +45,12 @@ echo "      sudo nano /usr/share/skyaware/html2/index.html "
 echo ""
 echo "Press Ctrl+W and type "buttonContainer" and press Enter key "
 echo 'the cursor will jump to <div class="buttonContainer">'
-echo -e '\e[95mYou will see\e[39m following 3 lines \e[95mJUST ABOVE\e[39m the line \e[32m<div class="buttonContainer"> \e[39m'
-echo -e '\e[95mIn line starting with "<iframe", CHANGE gain.php to gain2.php  \e[39m'
+echo -e '\e[95mInsert\e[39m following 3 lines \e[95mJUST ABOVE\e[39m the line \e[32m<div class="buttonContainer"> \e[39m'
+echo -e '\e[95mIf these lines are already there, in line "<iframe src=", CHANGE gain.php to gain2.php \e[39m'
 
+echo ""
 echo '  <div id="GAIN" style="text-align:center;width:175px;height:65px;">'
-echo '  <iframe src=../../gain.php style="border:0;width:175px;height:65px;">'
+echo '  <iframe src=../../gain2.php style="border:0;width:175px;height:65px;">'
 echo '  </iframe>'
 echo '  </div> <!----- GAIN --->'
 echo ""
