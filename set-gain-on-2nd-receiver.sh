@@ -15,7 +15,7 @@ sudo sed -i 's/ADAPTIVE_DYNAMIC_RANGE/ADAPTIVE_DYNAMIC_RANGE2/g' /usr/local/sbin
 
 sudo ln -sf /usr/local/sbin/gain2/gain2.php /var/www/html/gain2.php  
 
-sudo cp -r /usr/share/skyaware  /usr/share/skyaware/html2  
+sudo cp -r /usr/share/skyaware/html  /usr/share/skyaware/html2  
 
 sudo sed -i 's/skyaware\/html/skyaware\/html2/g'  /etc/lighttpd/conf-available/89-skyaware2.conf  
 
