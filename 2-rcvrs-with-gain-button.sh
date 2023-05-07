@@ -430,3 +430,8 @@ echo -e "(4) After reboot, go to your browser and check map on following address
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware/"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/"
 echo ""
+
+read -rsp $'Press any key to start adding set-gain add-on buttons in skyaware map...\n' -n1 key
+sudo bash -c "$(wget -O - https://github.com/abcd567a/temp/raw/main/set-gain-2-rcvrs.sh)"
+
+
