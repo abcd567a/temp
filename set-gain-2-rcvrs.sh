@@ -354,10 +354,11 @@ sudo systemctl start set-gain2
 
 echo "Embeding Gain Button in Skyaware2"
 sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:center;width:175px;height:65px;">\n<iframe src=..\/..\/gain2.php style="border:0;width:175px;height:65px;"><\/iframe>\n<\/div> <!----- GAIN --->' /usr/share/skyaware2/html/index.html
-
+echo ""
+echo ""
+echo ""
 echo ""
 echo -e "\e[32mEMBEDED GAIN BUTTONS IN SKYAWARE & SKYAWARE2 MAPS\e[39m"
-echo ""
 echo ""
 echo -e "\e[32m======================================= \e[39m"
 echo -e "\e[32mSCRIPT COMPLETED INSTALLATION \e[39m"
