@@ -243,7 +243,7 @@ echo ""
 echo "Copying skyaware folder to skyaware2
 sudo cp -r /usr/share/skyaware /usr/share/skyaware2
 
-echo -e "\e[33m(4) Creating lighttpd Config file......\e[39m"
+echo -e "\e[33mCreating lighttpd Config file......\e[39m"
 CONFIG_FILE_lighttpd=/etc/lighttpd/conf-available/89-skyaware2.conf
 sudo touch $CONFIG_FILE_lighttpd
 sudo chmod 666 $CONFIG_FILE_lighttpd
