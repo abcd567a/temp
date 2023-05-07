@@ -183,7 +183,7 @@ sudo systemctl enable set-gain
 sudo systemctl start set-gain
 
 echo "Embeding Gain Button in Skyaware"
-sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:center;width:175px;height:65px;">\n<iframe src=..\/..\/gain.php style="border:0;width:175px;height:65px;"><\/iframe>\n<\/div> <!----- GAIN --->' /usr/share/skyaware2/html/index.html
+sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:center;width:175px;height:65px;">\n<iframe src=..\/..\/gain.php style="border:0;width:175px;height:65px;"><\/iframe>\n<\/div> <!----- GAIN --->' /usr/share/skyaware/html/index.html
 
 
 
