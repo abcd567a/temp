@@ -17,6 +17,8 @@ sudo ln -sf /usr/local/sbin/gain2/gain2.php /var/www/html/gain2.php
 
 sudo cp -r /usr/share/skyaware/html  /usr/share/skyaware/html2  
 
+sudo sed -i 's/..\/..\/gain.php/..\/..\/gain2.php/' /usr/share/skyaware/html2/index.html
+
 sudo sed -i 's/skyaware\/html/skyaware\/html2/g'  /etc/lighttpd/conf-available/89-skyaware2.conf  
 
 sudo cp /lib/systemd/system/set-gain.service /lib/systemd/system/set-gain2.service
