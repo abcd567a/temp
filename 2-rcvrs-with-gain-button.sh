@@ -236,10 +236,10 @@ OVERRIDE_OPTIONS2=""
 CONFIG_STYLE2=6
 
 EOT
+sudo chmod 644 $CONFIG_FILE_dump
 
 echo 'creating copy of folder /usr/share/skyaware
 sudo cp -r /usr/share/skyaware /usr/share/skyaware2
-sudo chmod 644 $CONFIG_FILE_dump
 echo ""
 echo -e "\e[33m(4) Creating lighttpd Config file......\e[39m"
 CONFIG_FILE_lighttpd=/etc/lighttpd/conf-available/89-skyaware2.conf
