@@ -277,7 +277,7 @@ exec &>/usr/local/sbin/gain2/log
 # file that anyone can write to in order to set a new gain
 fifo2=/usr/local/sbin/gain2/newgain
 
-# remove $fifo so we are sure we can create our named pipe
+# remove $fifo2 so we are sure we can create our named pipe
 rm -f $fifo2
 
 # create the named pipe with write access for everyone
