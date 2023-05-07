@@ -24,9 +24,12 @@ echo -e "\e[32mEnabling module fastcgi-php....\e[39m"
 sudo lighty-enable-mod fastcgi-php
 sudo /etc/init.d/lighttpd force-reload
 
-###############################
-######## GAIN-1 ###############
-###############################
+##############################################################
+##############################################################
+GAIN-1     GAIN-1     GAIN-1     GAIN-1      GAIN-1     GAIN-1
+##############################################################
+##############################################################
+
 echo "Creating folder gain...."
 sudo mkdir -p /usr/local/sbin/gain
 
@@ -187,9 +190,12 @@ sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:c
 
 
 
-##############################
-######### GAIN-2 #############
-##############################
+##############################################################
+##############################################################
+GAIN-2     GAIN-2     GAIN-2     GAIN-2      GAIN-2     GAIN-2
+##############################################################
+##############################################################
+
 echo "Creating folder gain2...."
 sudo mkdir -p /usr/local/sbin/gain2
 
@@ -349,7 +355,7 @@ sudo systemctl start set-gain2
 echo "Embeding Gain Button in Skyaware2"
 sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:center;width:175px;height:65px;">\n<iframe src=..\/..\/gain2.php style="border:0;width:175px;height:65px;"><\/iframe>\n<\/div> <!----- GAIN --->' /usr/share/skyaware2/html/index.html
 
-
+echo ""
 echo -e "\e[32m======================================= \e[39m"
 echo -e "\e[32mSCRIPT COMPLETED INSTALLATION \e[39m"
 echo -e "\e[32m======================================= \e[39m"
@@ -363,4 +369,4 @@ echo -e "\e[95m(2.4) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/
 echo -e "\e[95m(2.4) Go to http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/ \e[39m"
 echo ""
 echo -e "\e[32m(2.5) Clear Browser cache (Ctrl+Shift+Delete) & Reload browser (Ctrl+F5) \e[39m"
-
+echo ""
