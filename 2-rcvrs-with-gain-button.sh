@@ -237,13 +237,11 @@ CONFIG_STYLE2=6
 
 EOT
 
-sudo chmod 644 $CONFIG_FILE_dump
-echo "" 
-
-echo "Copying skyaware folder to skyaware2
+echo 'creating copy of folder /usr/share/skyaware
 sudo cp -r /usr/share/skyaware /usr/share/skyaware2
-
-echo -e "\e[33mCreating lighttpd Config file......\e[39m"
+sudo chmod 644 $CONFIG_FILE_dump
+echo ""
+echo -e "\e[33m(4) Creating lighttpd Config file......\e[39m"
 CONFIG_FILE_lighttpd=/etc/lighttpd/conf-available/89-skyaware2.conf
 sudo touch $CONFIG_FILE_lighttpd
 sudo chmod 666 $CONFIG_FILE_lighttpd
@@ -397,11 +395,6 @@ sudo systemctl restart dump1090-fa2
 sudo systemctl restart piaware
 sudo systemctl restart piaware2
 
-
-
-
-
-
 echo -e "\e[32m===============\e[39m"
 echo -e "\e[32mALL DONE !\e[39m"
 echo -e "\e[32m===============\e[39m"
@@ -430,8 +423,3 @@ echo -e "(4) After reboot, go to your browser and check map on following address
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware/"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/"
 echo ""
-
-read -rsp $'Press any key to start adding set-gain add-on buttons in skyaware map...\n' -n1 key
-sudo bash -c "$(wget -O - https://github.com/abcd567a/temp/raw/main/set-gain-2-rcvrs.sh)"
-
-
