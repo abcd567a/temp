@@ -135,4 +135,5 @@ echo ""
 echo -e "\e[39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[39m"
 echo -e "\e[94m    https://flightaware.com/adsb/piaware/claim \e[39m"
 echo ""
-
+echo -e "\e[1;39mThe piaware has been built WITHOUT fa-mlat-client due to cx_Freeze issue \e[39m"
+echo -e "\e[1;39mdue to cx_Freeze issue on Debian 12 Bookworm .... \e[39m"
