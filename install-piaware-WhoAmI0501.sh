@@ -67,14 +67,16 @@ echo -e "\e[32mInstalling Build tools & Build dependencies\e[39m"
 sudo apt install -y git
 sudo apt install -y build-essential
 sudo apt install -y devscripts
-  
+sudo apt install -y cmake
+
 #Build-Depends: 
 sudo apt install -y debhelper
 sudo apt install -y tcl8.6-dev
 sudo apt install -y autoconf
 sudo apt install -y python3-dev
 sudo apt install -y python3-venv
-sudo apt install -y python3-setuptools
+sudo apt install -y python3-setuptools 
+sudo apt install -y python3-pip
 sudo apt install -y libz-dev
 sudo apt install -y openssl
 sudo apt install -y libboost-system-dev
