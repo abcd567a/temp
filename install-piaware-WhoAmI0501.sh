@@ -21,19 +21,21 @@ elif [[ ${OS_VERSION} == buster ]]; then
 elif [[ ${OS_VERSION} == bullseye ]]; then
   OS_VERSION=bullseye
 elif [[ ${OS_VERSION} == bookworm ]]; then
-  sudo bash -c "$(wget -O - https://github.com/abcd567a/temp/raw/main/install-piaware-debian-12.sh)"
-  exit 0
+  OS_VERSION=bookworm
 
 ## UBUNTU
+elif [[ ${OS_VERSION} == xenial ]]; then
+  OS_VERSION=xenial
 elif [[ ${OS_VERSION} == bionic ]]; then
-  OS_VERSION=stretch
+  OS_VERSION=bionic
+elif [[ ${OS_VERSION} == disco ]]; then
+  OS_VERSION=disco
 elif [[ ${OS_VERSION} == focal ]]; then
   OS_VERSION=buster
 elif [[ ${OS_VERSION} == jammy || ${OS_VERSION} == kinetic ]]; then
   OS_VERSION=bullseye
 elif [[ ${OS_VERSION} == lunar ]]; then
-  sudo bash -c "$(wget -O - https://github.com/abcd567a/temp/raw/main/install-piaware-debian-12.sh)"
-  exit 0
+  OS_VERSION=bookworm
 
 ## LINUX MINT
 elif [[ ${OS_VERSION} == tara || ${OS_VERSION} == tessa || ${OS_VERSION} == tina || ${OS_VERSION} == tricia ]]; then
@@ -49,9 +51,8 @@ elif [[ ${OS_ID} == Kali && ${OS_RELEASE%.*} == 2021 ]]; then
 elif [[ ${OS_ID} == Kali && ${OS_RELEASE%.*} == 2022 ]]; then
   OS_VERSION=bullseye
 elif [[ ${OS_ID} == Kali && ${OS_RELEASE%.*} == 2023 ]]; then
-  sudo bash -c "$(wget -O - https://github.com/abcd567a/temp/raw/main/install-piaware-debian-12.sh)"
-  exit 0
-
+  OS_VERSION=bookworm
+  
 else
 #  OS_VERSION=bullseye
    echo -e "\e[01;31mdont know how to install on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[39m"
