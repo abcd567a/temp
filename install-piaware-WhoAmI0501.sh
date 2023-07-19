@@ -118,7 +118,8 @@ sudo apt install -y itcl3
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
 cd ${INSTALL_DIRECTORY}
 sudo mv piaware_builder piaware_builder-old-$RANDOM
-git clone https://github.com/flightaware/piaware_builder
+## git clone https://github.com/flightaware/piaware_builder
+git clone https://github.com/WhoAmI0501/piaware_builder
 cd ${INSTALL_DIRECTORY}/piaware_builder
 git fetch --all
 git reset --hard origin/master
