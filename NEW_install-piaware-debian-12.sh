@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
+
 INSTALL_DIRECTORY=${PWD}
 
 echo -e "\e[32mUpdating\e[39m"
@@ -70,7 +73,13 @@ apt install -y tclx8.4
 
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
 cd ${INSTALL_DIRECTORY}
-mv piaware_builder piaware_builder-old-$RANDOM
+
+if [[ -d piaware_builder ]];
+then
+echo -e "\e[32mRenaming existing piaware_builder folder by adding prefix \"old\" \e[39m"
+sudo mv piaware_builder piaware_builder-old-$RANDOM
+fi
+
 git clone https://github.com/WhoAmI0501/piaware_builder
 cd ${INSTALL_DIRECTORY}/piaware_builder
 echo -e "\e[32mBuilding the piaware package \e[39m"
