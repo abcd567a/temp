@@ -118,6 +118,6 @@ echo -e "\e[1;35mFlightaware fails to build on Bookworm.... \e[39m"
 echo -e "\e[1;35mThis piaware has been built using source-code from:\e[39m"
 echo -e "\e[1;39m    https://github.com/WhoAmI0501/piaware_builder\e[39m"
 echo -e "\e[1;35mand using mlat-client source-code from:\e[39m"
-echo -e "\e[1;39m    https://github.com/wiedehopf/mlat-client.git\e[39m"
+echo -e "\e[1;39m    https://github.com/wiedehopf/mlat-client\e[39m"
 echo -e "\e[1;31mMLAT will be ENABLED .... \e[39m"
 
