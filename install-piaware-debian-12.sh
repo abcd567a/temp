@@ -67,7 +67,13 @@ apt install -y chrpath
 echo -e "\e[32mCloning tcl-tls source code \e[39m"
 
 cd  ${INSTALL_DIRECTORY}
+
+if [[ -d tcltls-rebuild ]];
+then
+echo -e "\e[32mRenaming existing tcltls-rebuild folder by adding prefix \"old\" \e[39m"
 mv tcltls-rebuild tcltls-rebuild-old-$RANDOM
+fi
+
 git clone https://github.com/flightaware/tcltls-rebuild
 cd  ${INSTALL_DIRECTORY}/tcltls-rebuild
 git fetch --all
