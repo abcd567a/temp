@@ -44,6 +44,7 @@ sudo apt install -y debhelper
 sudo apt install -y tcl8.6-dev
 sudo apt install -y autoconf
 sudo apt install -y python3-dev
+sudo apt install -y python3-build
 sudo apt install -y python3-venv
 sudo apt install -y python3-setuptools
 sudo apt install -y libz-dev
