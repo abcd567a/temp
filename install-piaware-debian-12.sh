@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
+
 INSTALL_DIRECTORY=${PWD}
 
 echo -e "\e[32mUpdating\e[39m"
