@@ -102,7 +102,13 @@ apt install -y itcl3
 
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
 cd ${INSTALL_DIRECTORY}
+
+if [[ -d piaware_builder ]];
+then
+echo -e "\e[32mRenaming existing piaware_builder folder by adding prefix \"old\" \e[39m"
 mv piaware_builder piaware_builder-old-$RANDOM
+fi
+
 git clone https://github.com/flightaware/piaware_builder
 cd ${INSTALL_DIRECTORY}/piaware_builder
 git fetch --all
