@@ -46,6 +46,7 @@ apt install -y devscripts
 apt install -y debhelper
 apt install -y tcl8.6-dev
 apt install -y autoconf
+apt install -y python3-pip
 apt install -y python3-dev
 apt install -y python3-build
 apt install -y python3-venv
