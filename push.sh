@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTIONS="keepalive,keepidle=30,keepintvl=30,keepcnt=2,connect-timeout=30,retry=2,interv>
+OPTIONS="keepalive,keepidle=30,keepintvl=30,keepcnt=2,connect-timeout=30,retry=2,interval=15"
 CMD=""
 IFS=":"
 while read -r field1 field2 field3; do
