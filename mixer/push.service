@@ -1,0 +1,21 @@
+# socat push service - by abcd567
+
+[Unit]
+Description=socat push service by abcd567
+Wants=network.target
+After=network.target
+
+[Service]
+User=push
+RuntimeDirectory=push
+RuntimeDirectoryMode=0755
+ExecStart=/usr/bin/bash /usr/share/mixer/push.sh
+SyslogIdentifier=push
+Type=simple
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=64
+#Nice=-5
+
+[Install]
+WantedBy=default.target
