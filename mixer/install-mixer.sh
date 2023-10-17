@@ -92,9 +92,9 @@ echo "Writing code to socat script file pull.sh"
 /bin/cat <<EOM >${PULL_SCRIPT}
 #!/bin/bash
 RECEIVERS=/usr/share/mixer/receivers.ip
-if  ! [[ -f ${RECEIVERS} ]]; then
+if  ! [[ -f \${RECEIVERS} ]]; then
    echo "RECEIVER's CONFIG FILE DOES NOT EXIST.... ";
-   echo "Create it by command: sudo nano ${RECEIVERS} ";
+   echo "Create it by command: sudo nano \${RECEIVERS} ";
    echo "and add IP Addresses of all receivers to it ";
    echo "(one site per line) ";
    echo "Like EXAMPLE below: ";
@@ -104,10 +104,10 @@ if  ! [[ -f ${RECEIVERS} ]]; then
    echo "";
    exit 0;
 
-elif  [[ -f ${RECEIVERS} ]]; then
-   if  ! [[ -s ${RECEIVERS} ]]; then
+elif  [[ -f \${RECEIVERS} ]]; then
+   if  ! [[ -s \${RECEIVERS} ]]; then
       echo "RECEIVER's CONFIG FILE IS EMPTY....";
-      echo "Open it by command: sudo nano ${RECEIVERS} ";
+      echo "Open it by command: sudo nano \${RECEIVERS} ";
       echo "Add target addresses to it ";
       echo "(one site per line) ";
       echo "Like EXAMPLE below: ";
@@ -126,14 +126,14 @@ SRC=""
 CMD=""
 while read line;
 do
-[[ -z "$line" ]] && continue
-CMD+="socat -dd -u TCP:${line}:30005,${OPT} TCP:127.0.0.1:40004,${OPT} | ";
-done < ${RECEIVERS}
+[[ -z "\$line" ]] && continue
+CMD+="socat -dd -u TCP:\${line}:30005,\${OPT} TCP:127.0.0.1:40004,\${OPT} | ";
+done < \${RECEIVERS}
 
 while true
 do
       echo "CONNECTING MIXER TO RECEIVERS:"
-      eval "${CMD%|*}"
+      eval "\${CMD%|*}"
       echo "LOST CONNECTION OF MIXER AND RECEIVERS:"
       echo "RE-CONNECTING MIXER TO RECEIVERS:"
       sleep 60
