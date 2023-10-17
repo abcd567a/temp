@@ -1,0 +1,22 @@
+# mixer service for systemd
+
+[Unit]
+Description=adsb data mixer service
+Documentation=https://flightaware.com/adsb/piaware/
+Wants=network.target
+After=network.target
+
+[Service]
+User=mixer
+RuntimeDirectory=mixer
+RuntimeDirectoryMode=0755
+ExecStart=/usr/share/mixer/start-mixer --write-json %t/mixer
+SyslogIdentifier=mixer
+Type=simple
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=64
+Nice=-5
+
+[Install]
+WantedBy=default.target
