@@ -91,7 +91,7 @@ EOM
 chmod +x ${PUSH_SCRIPT}
 
 echo "Creating systemd service file for push"
-PULL_SERVICE=/lib/systemd/system/push.service
+PUSH_SERVICE=/lib/systemd/system/push.service
 touch ${PUSH_SERVICE}
 chmod 777 ${PUSH_SERVICE}
 echo "Writing code to service file push.service"
