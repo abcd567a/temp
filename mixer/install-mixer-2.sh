@@ -71,7 +71,7 @@ echo -e "\e[1;32mInstalling socat Package..... \e[39;0m"
 sleep 2
 apt install -y socat
 
-echo -e "\e[1;32mInstalling Scripts \"receivers.ip\" & \"pull\" to create socat connections..... \e[39;0m"
+echo -e "\e[1;32mInstalling Scripts \"receivers.ip\" \"start-pull\" and \"start-connections.sh\" to create socat connections..... \e[39;0m"
 sleep 2
 INSTALL_FOLDER=/usr/share/mixer
 if [[ ! -d ${INSTALL_FOLDER} ]];
@@ -124,9 +124,9 @@ fi
 OPT="keepalive,keepidle=30,keepintvl=30,keepcnt=2,connect-timeout=30,retry=2,interval=15"
 while read line;
 do
-[[ -z "$line" ]] && continue
-systemctl restart connection@$line
-done < ${RECEIVERS}
+[[ -z "\$line" ]] && continue
+systemctl restart connection@\$line
+done < \${RECEIVERS}
 EOM
 
 chmod +x ${START_PULL_SCRIPT}
@@ -173,11 +173,11 @@ echo "Writing code to socat script file start-connections.sh"
 
 OPT="keepalive,keepidle=30,keepintvl=30,keepcnt=2,connect-timeout=30,retry=2,interval=15"
 CMD=""
-CMD="socat -dd -u TCP:$1:30005,${OPT} TCP:127.0.0.1:40004,${OPT} ";
+CMD="socat -dd -u TCP:\$1:30005,\${OPT} TCP:127.0.0.1:40004,\${OPT} ";
 while true
     do
       echo "CONNECTING MIXER TO RECEIVERS:"
-      eval "${CMD}"
+      eval "\${CMD}"
       echo "LOST CONNECTION OF MIXER AND RECEIVERS:"
       echo "RE-CONNECTING MIXER TO RECEIVERS:"
      sleep 30
@@ -186,11 +186,11 @@ EOM
 chmod +x ${START_CONNECTIONS_SCRIPT}
 
 echo "Creating systemd service file for connection@.servic"
-CONNECTION@_SERVICE=/lib/systemd/system/start-pull.service
-touch ${CONNECTIONS@_SERVICE}
-chmod 777 ${CONNECTION@_SERVICE}
+CONNECTION_SERVICE=/lib/systemd/system/connection@.service
+touch ${CONNECTION_SERVICE}
+chmod 777 ${CONNECTION_SERVICE}
 echo "Writing code to service file connection@.service"
-/bin/cat <<EOM >${CONNECTION@_SERVICE}
+/bin/cat <<EOM >${CONNECTION_SERVICE}
 # socat connection service - by abcd567
 
 [Unit]
@@ -213,7 +213,7 @@ RestartPreventExitStatus=64
 [Install]
 WantedBy=default.target
 EOM
-chmod 644 ${CONNECTION@_SERVICE}
+chmod 644 ${CONNECTION_SERVICE}
 
 
 #######################################################################################################
