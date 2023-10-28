@@ -29,11 +29,11 @@ echo -e "\e[32mCreating sub-folder ${VARS_FOLDER} \e[39m"
 mkdir ${VARS_FOLDER}
 fi
 
-echo "Creating Targets IP addresses file targets.ip"
+echo -e "\e[1;32mCreating Targets IP addresses file targets.ip \e[39;0m"
 touch ${INSTALL_FOLDER}/targets.ip
 echo "msg:data.adsbhub.org:5001" > ${INSTALL_FOLDER}/targets.ip
 
-echo "Creating pusher script file pusher.sh"
+echo -e "\e[1;32mCreating pusher script file pusher.sh \e[39;0m"
 PUSHER_SCRIPT=${INSTALL_FOLDER}/pusher.sh
 touch ${PUSHER_SCRIPT}
 chmod 777 ${PUSHER_SCRIPT}
@@ -98,7 +98,7 @@ EOM
 chmod +x ${PUSHER_SCRIPT}
 
 
-echo "Creating push-connector script file push-connector.sh"
+echo -e "\e[1;32mCreating push-connector script file push-connector.sh \e[39;0m"
 PUSH_CONNECTOR_SCRIPT=${INSTALL_FOLDER}/push-connector.sh
 touch ${PUSH_CONNECTOR_SCRIPT}
 chmod 777 ${PUSH_CONNECTOR_SCRIPT}
@@ -122,18 +122,18 @@ EOM
 
 chmod +x ${PUSH_CONNECTOR_SCRIPT}
 
-echo "Creating user \"push\" to run the push services...."
+echo -e "\e[1;32mCreating user \"push\" to run the push services.... \e[39;0m"
 if id -u push >/dev/null 2>&1; then
   echo "user push exists"
 else
   echo "user push does not exist, creating user push"
   useradd --system push
+  echo "Giving ownership of " ${INSTALL_FOLDER} " and all of it's contents (Recursive) to user \"push\' ...."
+  chown push:push -R ${INSTALL_FOLDER}
 fi
 
-echo "Giving ownership of " ${INSTALL_FOLDER} " and all of it's contents (Recursive) to user \"push\' ...."
-chown push:push -R ${INSTALL_FOLDER}
 
-echo "Creating systemd service file for pusher"
+echo -e "\e[1;32mCreating systemd service file for pusher \e[39;0m"
 PUSHER_SERVICE=/lib/systemd/system/pusher.service
 touch ${PUSHER_SERVICE}
 chmod 777 ${PUSHER_SERVICE}
@@ -166,7 +166,7 @@ chmod 644 ${PUSHER_SERVICE}
 systemctl enable pusher
 systemctl restart pusher
 
-echo "Creating systemd service file for push@.service"
+echo -e "\e[1;32mCreating systemd service file for push@.service \e[39;0m"
 PUSH_SERVICE=/lib/systemd/system/push@.service
 touch ${PUSH_SERVICE}
 chmod 777 ${PUSH_SERVICE}
