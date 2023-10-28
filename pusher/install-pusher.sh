@@ -171,10 +171,10 @@ touch ${PUSH_AT_SERVICE}
 chmod 777 ${PUSH_AT_SERVICE}
 echo "Writing code to service file push@.service"
 /bin/cat <<EOM >${PUSH_AT_SERVICE}
-# socat push service - by abcd567
+# socat push@.service - by abcd567
 
 [Unit]
-Description=push service by abcd567
+Description=push@.service by abcd567
 Wants=network.target
 After=network.target
 
