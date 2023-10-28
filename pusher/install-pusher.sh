@@ -122,16 +122,15 @@ EOM
 
 chmod +x ${PUSH_CONNECTOR_SCRIPT}
 
-echo -e "\e[1;32mCreating user \"push\" to run the push services.... \e[39;0m"
-if id -u push >/dev/null 2>&1; then
-  echo "user push exists"
-else
-  echo "user push does not exist, creating user push"
-  useradd --system push
-  echo "Giving ownership of " ${INSTALL_FOLDER} " and all of it's contents (Recursive) to user \"push\' ...."
-  chown push:push -R ${INSTALL_FOLDER}
-fi
-
+## echo -e "\e[1;32mCreating user \"push\" to run the push services.... \e[39;0m"
+## if id -u push >/dev/null 2>&1; then
+##  echo "user push exists"
+## else
+##  echo "user push does not exist, creating user push"
+##   useradd --system push
+##  echo "Giving ownership of " ${INSTALL_FOLDER} " and all of it's contents (Recursive) to user \"push\' ...."
+##  chown push:push -R ${INSTALL_FOLDER}
+##fi
 
 echo -e "\e[1;32mCreating systemd service file for pusher \e[39;0m"
 PUSHER_SERVICE=/lib/systemd/system/pusher.service
@@ -167,11 +166,11 @@ systemctl enable pusher
 systemctl restart pusher
 
 echo -e "\e[1;32mCreating systemd service file for push@.service \e[39;0m"
-PUSH_SERVICE=/lib/systemd/system/push@.service
-touch ${PUSH_SERVICE}
-chmod 777 ${PUSH_SERVICE}
+PUSH_AT_SERVICE=/lib/systemd/system/push@.service
+touch ${PUSH_AT_SERVICE}
+chmod 777 ${PUSH_AT_SERVICE}
 echo "Writing code to service file push@.service"
-/bin/cat <<EOM >${PUSH_SERVICE}
+/bin/cat <<EOM >${PUSH_AT_SERVICE}
 # socat push service - by abcd567
 
 [Unit]
@@ -195,7 +194,7 @@ RestartPreventExitStatus=64
 [Install]
 WantedBy=default.target
 EOM
-chmod 644 ${PUSH_SERVICE}
+chmod 644 ${PUSH_AT_SERVICE}
 
 
 #######################################################################################################
