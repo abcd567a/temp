@@ -146,7 +146,7 @@ Wants=network.target
 After=network.target
 
 [Service]
-#User=push
+## User=push
 RuntimeDirectory=pusher
 RuntimeDirectoryMode=0755
 ExecStart=/usr/share/pusher/pusher.sh
@@ -179,7 +179,7 @@ Wants=network.target
 After=network.target
 
 [Service]
-#User=push
+## User=push
 EnvironmentFile=/usr/share/pusher/vars/%i
 RuntimeDirectory=push-%i
 RuntimeDirectoryMode=0755
