@@ -108,11 +108,11 @@ echo "Writing code to script file push-connector.sh"
 
 OPT="keepalive,keepidle=30,keepintvl=30,keepcnt=2,connect-timeout=30,retry=2,interval=15"
 CMD=""
-CMD="socat -dd -u TCP:$1,${OPT} TCP:$2:$3,${OPT} ";
+CMD="socat -dd -u TCP:\$1,\${OPT} TCP:\$2:\$3,\${OPT} ";
 while true
     do
       echo "CONNECTING MIXER TO TARGET"
-      eval "${CMD}"
+      eval "\${CMD}"
       echo "LOST CONNECTION OF MIXER AND TARGET"
       echo "RE-CONNECTING MIXER TO TARGET"
      sleep 30
@@ -132,15 +132,6 @@ fi
 
 echo "Giving ownership of " ${INSTALL_FOLDER} " and all of it's contents (Recursive) to user \"push\' ...."
 chown push:push -R ${INSTALL_FOLDER}
-
-
-
-
-
-
-
-
-
 
 echo "Creating systemd service file for pusher"
 PUSHER_SERVICE=/lib/systemd/system/pusher.service
@@ -176,11 +167,11 @@ systemctl enable pusher
 systemctl restart pusher
 
 echo "Creating systemd service file for push@.service"
-PUSH@_SERVICE=/lib/systemd/system/push@.service
-touch ${PUSH@_SERVICE}
-chmod 777 ${PUSH@_SERVICE}
+PUSH_SERVICE=/lib/systemd/system/push@.service
+touch ${PUSH_SERVICE}
+chmod 777 ${PUSH_SERVICE}
 echo "Writing code to service file push@.service"
-/bin/cat <<EOM >${PUSH@_SERVICE}
+/bin/cat <<EOM >${PUSH_SERVICE}
 # socat push service - by abcd567
 
 [Unit]
@@ -204,7 +195,7 @@ RestartPreventExitStatus=64
 [Install]
 WantedBy=default.target
 EOM
-chmod 644 ${PUSH@_SERVICE}
+chmod 644 ${PUSH_SERVICE}
 
 
 #######################################################################################################
