@@ -31,7 +31,9 @@ fi
 
 echo -e "\e[1;32mCreating Targets IP addresses file targets.ip \e[39;0m"
 touch ${INSTALL_FOLDER}/targets.ip
-echo "msg:data.adsbhub.org:5001" > ${INSTALL_FOLDER}/targets.ip
+echo "beast:feed1.adsbexchange.com:30004" > ${INSTALL_FOLDER}/targets.ip
+echo "beast:feed.adsb.fi:30004" >> ${INSTALL_FOLDER}/targets.ip
+echo "msg:data.adsbhub.org:5001" >> ${INSTALL_FOLDER}/targets.ip
 
 echo -e "\e[1;32mCreating pusher script file pusher.sh \e[39;0m"
 PUSHER_SCRIPT=${INSTALL_FOLDER}/pusher.sh
