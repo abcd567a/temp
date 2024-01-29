@@ -24,8 +24,8 @@ sudo touch ${CONFIG_FILE}
 sudo chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file dump1090-rb"
 /bin/cat <<EOM >${CONFIG_FILE}
---device 0
 --gain 49.6
+--device 0
 --net
 --net-ri-port 30001
 --net-ro-port 30002
