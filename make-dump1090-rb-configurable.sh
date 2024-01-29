@@ -38,6 +38,7 @@ echo "Writing code to config file dump1090-rb"
 --modeac 
 --fix
 --gnss
+--write-json /var/run/dump1090-rb 
 
 EOM
 sudo chmod 644 ${CONFIG_FILE}
