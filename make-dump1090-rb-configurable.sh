@@ -33,12 +33,12 @@ echo "Writing code to config file dump1090-rb"
 --net-bi-port 30004,30104
 --net-bo-port 30005
 --quiet 
+--write-json /var/run/dump1090-rb 
 --mlat 
 --forward-mlat
 --modeac 
 --fix
 --gnss
---write-json /var/run/dump1090-rb 
 
 EOM
 sudo chmod 644 ${CONFIG_FILE}
