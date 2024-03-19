@@ -134,7 +134,7 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_VERSION}
  sed -i '/$(VENV)\/bin\/python -m build --skip-dependency-check/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m pip install --no-index /s/^/#/' debian/rules
  
- sed -i '/install_mlat-client:/s/^/#/' debian/rules                     
+ sed -i '/install_mlat-client:/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python $(VENV)\/bin\/cxfreeze --target-dir/s/^/#/' debian/rules
  sed -i '/cp -a $(CURDIR)\/freeze-mlat-client/s/^/#/' debian/rules
 
