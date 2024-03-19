@@ -128,6 +128,7 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_VERSION}
  sed -i '/dh_strip -X debian/s/^/#/' debian/rules
  
  sed -i '/build_mlat-client/s/^/#/' debian/rules
+ sed -i '/$(PYTHON3) -m venv/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m build --skip-dependency-check/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m pip install --no-index --no-deps/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m build --skip-dependency-check/s/^/#/' debian/rules
@@ -135,13 +136,12 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_VERSION}
  
  sed -i '/install_mlat-client:/s/^/#/' debian/rules                     
  sed -i '/$(VENV)\/bin\/python $(VENV)\/bin\/cxfreeze --target-dir/s/^/#/' debian/rules
- sed -i '/cp -a $(CURDIR)\/freeze-mlat-client /s/^/#/' debian/rules     
+ sed -i '/cp -a $(CURDIR)\/freeze-mlat-client/s/^/#/' debian/rules
 
  sed -i '/clean_mlat-client:/s/^/#/' debian/rules
  sed -i '/rm -fr mlat-client\/build/s/^/#/' debian/rules
  sed -i '/rm -fr cx_Freeze-6.15.9/s/^/#/' debian/rules
  sed -i '/rm -fr $(VENV) $(CURDIR)\/wheels/s/^/#/' debian/rules
- sed -i '/cp -a $(CURDIR)\/freeze-mlat-client/s/^/#/' debian/rules
 
 dpkg-buildpackage -b --no-sign 
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
