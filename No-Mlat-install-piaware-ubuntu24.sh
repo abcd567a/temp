@@ -127,7 +127,7 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_VERSION}
  sed -i '/override_dh_strip:/s/^/#/' debian/rules
  sed -i '/dh_strip -X debian/s/^/#/' debian/rules
  
- sed -i '/build_mlat-client/s/^/#/' debian/rules
+ sed -i '/build_mlat-client:/s/^/#/' debian/rules
  sed -i '/$(PYTHON3) -m venv/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m build --skip-dependency-check/s/^/#/' debian/rules
  sed -i '/$(VENV)\/bin\/python -m pip install --no-index --no-deps/s/^/#/' debian/rules
