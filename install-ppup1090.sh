@@ -24,7 +24,6 @@ chmod 777 ${SERVICE_FILE}
 [Unit]
 Description=ppup1090 Planeplotter uploader
 After=network.target dump1090-fa.service 
-PartOf=dump1090-fa.service
 
 [Service]
 User=ppup
