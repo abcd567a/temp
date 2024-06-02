@@ -2,6 +2,12 @@
 VERSION=ppup1090-vsns-nic-2024-05-19
 INSTALL_FOLDER=/usr/share/ppup
 
+## Detect OS 
+OS_ID=`lsb_release -si`
+OS_RELEASE=`lsb_release -sr`
+OS_VERSION=`lsb_release -sc`
+echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
+
 echo "Creating folder ppup"
 mkdir ${INSTALL_FOLDER}
 
@@ -13,6 +19,7 @@ unzip ${INSTALL_FOLDER}/${VERSION}.zip -d ${INSTALL_FOLDER}
 echo "Moving binaries folder"
 mv ${INSTALL_FOLDER}/${VERSION}/* ${INSTALL_FOLDER}/
 rm -rf ${INSTALL_FOLDER}/${VERSION}
+
 
 echo "Creating symlink to ppup1090 binary in folder /usr/bin/ "
 ln -s ${INSTALL_FOLDER}/ppup1090 /usr/bin/ppup1090
