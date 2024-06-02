@@ -5,7 +5,7 @@ INSTALL_FOLDER=/usr/share/ppup
 echo "Creating folder ppup"
 mkdir ${INSTALL_FOLDER}
 
-echo "Downloading compiled binaries from coaa.co.uk
+echo "Downloading compiled binaries from coaa.co.uk"
 wget -O ${INSTALL_FOLDER}/${VERSION}.zip https://www.coaa.co.uk/${VERSION}.zip
 
 echo "Unzipping compiled binaries"
