@@ -7,6 +7,8 @@ OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
+ARCHITECTURE=`uname -m`
+echo "Detected architecture " ${ARCHITECTURE}
 
 echo "Creating folder ppup"
 mkdir ${INSTALL_FOLDER}
@@ -20,6 +22,40 @@ echo "Moving binaries folder"
 mv ${INSTALL_FOLDER}/${VERSION}/* ${INSTALL_FOLDER}/
 rm -rf ${INSTALL_FOLDER}/${VERSION}
 
+echo "Detecting which binary should be copied to" ${INSTALL_FOLDER}
+
+BINARY_FOLDER=""
+if [[ ${OS_VERSION} == bookworm && ${ARCHITECTURE} == aarch64 ]]; then
+   BINARY_FOLDER=Bookworm-64
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+
+elif [[ ${OS_VERSION} == bookworm && ${ARCHITECTURE} == armv7l ]]; then
+   BINARY_FOLDER=Bookworm-32
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+elif [[ ${OS_VERSION} == bullseye && ${ARCHITECTURE} == aarch64 ]]; then
+   BINARY_FOLDER=Bullseye-64
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+elif [[ ${OS_VERSION} == bullseye && ${ARCHITECTURE} == armv7l ]]; then
+   BINARY_FOLDER=Bullseye-32
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+elif [[ ${OS_VERSION} == buster && ${ARCHITECTURE} == armv7l ]]; then
+   BINARY_FOLDER=Buster-32
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+else
+  echo "Do NOT have ppup1090 binary for your OS.....aborting installation"
+  exit
+
+fi
+
+echo "Copying binary to" ${INSTALL_FOLDER}
+cp ${INSTALL_FOLDER}/${BINARY_FOLDER}/ppup1090 ${INSTALL_FOLDER}/
+chmod +x ${INSTALL_FOLDER}/ppup1090
+ 
 
 echo "Creating symlink to ppup1090 binary in folder /usr/bin/ "
 ln -s ${INSTALL_FOLDER}/ppup1090 /usr/bin/ppup1090
@@ -40,8 +76,7 @@ chmod 777 ${SERVICE_FILE}
 
 [Unit]
 Description=ppup1090 Planeplotter uploader
-After=network.target dump1090-fa.service 
-PartOf=dump1090-fa.service
+After=network.target
 
 [Service]
 User=ppup
@@ -73,13 +108,7 @@ echo -e "\e[32m=======================\e[39m"
 echo " "
 echo -e "\e[33m  1. Copy coaa.h to folder" ${INSTALL_FOLDER}"/  \e[39m"
 echo " "
-echo -e "\e[33m  2. Copy compiled binary ppup1090 to folder" ${INSTALL_FOLDER}"/ \e[39m"
-echo -e "\e[95m     IMPORTANT: Make sure the binary is named ppup1090 \e[39m"
-echo " "
-echo -e "\e[33m  3. Make the binary executable by following command: \e[39m"
-echo -e "\e[39m     sudo chmod +x" ${INSTALL_FOLDER}"/ppup1090 \e[39m"
-echo " "
-echo -e "\e[33m  4. Restart ppup1090 by following command: \e[39m"
+echo -e "\e[33m  2. Restart ppup1090 by following command: \e[39m"
 echo -e "\e[39m     sudo systemctl restart ppup1090 \e[39m"
 echo " "
 
