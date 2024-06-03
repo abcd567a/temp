@@ -8,7 +8,7 @@ OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 ARCHITECTURE=`uname -m`
-echo "Detected architecture " ${ARCHITECTURE}
+echo -e "\e[35mDetected architecture " ${ARCHITECTURE}  "\e[39m"
 
 echo "Creating folder ppup"
 mkdir ${INSTALL_FOLDER}
