@@ -12,10 +12,24 @@ ARCHITECTURE=`uname -m`
 echo -e "\e[35mDetected architecture \e[32m" ${ARCHITECTURE}  "\e[39m"
 echo " "
 sleep 2
-echo  -e "\e[39mCreating folder \e[32m" ${INSTALL_FOLDER}  "\e[39m"
-sleep 2
-mkdir ${INSTALL_FOLDER}
+if [[ -d ${INSTALL_FOLDER} ]];
+then
+echo -e "\e[32mRenaming existing folder" ${INSTALL_FOLDER} "by adding prefix \"old\" \e[39m"
+INSTALL_FOLDER_OLD=${INSTALL_FOLDER}-old-$RANDOM
+mv ${INSTALL_FOLDER} ${INSTALL_FOLDER_OLD}
+fi
 echo " "
+echo  -e "\e[39mCreating folder \e[32m" ${INSTALL_FOLDER}  "\e[39m"
+mkdir ${INSTALL_FOLDER}
+sleep 2
+echo " "
+if [[ -d ${INSTALL_FOLDER_OLD} ]];
+then
+echo "Copying file coaa.h from old foder to new folder"
+cp  ${INSTALL_FOLDER_OLD}/coaa.h ${INSTALL_FOLDER}/
+fi
+echo " "
+
 echo "Downloading compiled binaries from coaa.co.uk"
 wget -O ${INSTALL_FOLDER}/${VERSION}.zip https://www.coaa.co.uk/${VERSION}.zip
 
