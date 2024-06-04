@@ -3,7 +3,7 @@ VERSION=ppup1090-vsns-nic-2024-05-19
 INSTALL_FOLDER=/usr/share/ppup
 
 echo " "
-## Detect OS 
+## Detect OS
 OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
@@ -11,11 +11,11 @@ echo -e "\e[35mDETECTED OS VERSION \e[32m" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} 
 ARCHITECTURE=`uname -m`
 echo -e "\e[35mDetected architecture \e[32m" ${ARCHITECTURE}  "\e[39m"
 echo " "
-sleep 5
-
-echo "Creating folder ppup"
+sleep 2
+echo  -e "\e[39mCreating folder \e[32m" ${INSTALL_FOLDER}  "\e[39m"
+sleep 2
 mkdir ${INSTALL_FOLDER}
-
+echo " "
 echo "Downloading compiled binaries from coaa.co.uk"
 wget -O ${INSTALL_FOLDER}/${VERSION}.zip https://www.coaa.co.uk/${VERSION}.zip
 
