@@ -2,6 +2,7 @@
 VERSION=ppup1090-vsns-nic-2024-05-19
 INSTALL_FOLDER=/usr/share/ppup
 
+echo " "
 ## Detect OS 
 OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
