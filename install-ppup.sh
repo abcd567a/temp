@@ -14,8 +14,12 @@ echo " "
 sleep 2
 if [[ -d ${INSTALL_FOLDER} ]];
 then
+  if [[ -d ${INSTALL_FOLDER}-old ]];
+  then
+   rm -rf ${INSTALL_FOLDER}-old
+  fi
 echo -e "\e[32mRenaming existing folder" ${INSTALL_FOLDER} "by adding prefix \"old\" \e[39m"
-INSTALL_FOLDER_OLD=${INSTALL_FOLDER}-old-$RANDOM
+INSTALL_FOLDER_OLD=${INSTALL_FOLDER}-old
 mv ${INSTALL_FOLDER} ${INSTALL_FOLDER_OLD}
 fi
 echo " "
