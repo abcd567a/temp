@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=ppup1090-vsns-nic-2024-05-19
+VERSION=ppup1090-2024-06-11
 INSTALL_FOLDER=/usr/share/ppup
 
 echo " "
@@ -39,9 +39,6 @@ wget -O ${INSTALL_FOLDER}/${VERSION}.zip https://www.coaa.co.uk/${VERSION}.zip
 
 echo "Unzipping compiled binaries"
 unzip ${INSTALL_FOLDER}/${VERSION}.zip -d ${INSTALL_FOLDER}
-echo "Moving binaries folder"
-mv ${INSTALL_FOLDER}/${VERSION}/* ${INSTALL_FOLDER}/
-rm -rf ${INSTALL_FOLDER}/${VERSION}
 
 echo "Detecting which binary should be copied to" ${INSTALL_FOLDER}
 
@@ -49,7 +46,6 @@ BINARY_FOLDER=""
 if [[ ${OS_VERSION} == bookworm && ${ARCHITECTURE} == aarch64 ]]; then
    BINARY_FOLDER=Bookworm-64
    echo "Using Binary in Folder:" ${BINARY_FOLDER};
-
 
 elif [[ ${OS_VERSION} == bookworm && ${ARCHITECTURE} == armv7l ]]; then
    BINARY_FOLDER=Bookworm-32
@@ -67,6 +63,14 @@ elif [[ ${OS_VERSION} == buster && ${ARCHITECTURE} == armv7l ]]; then
    BINARY_FOLDER=Buster-32
    echo "Using Binary in Folder:" ${BINARY_FOLDER};
 
+elif [[ ${ARCHITECTURE} == i686 ]]; then
+   BINARY_FOLDER=I686-32
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
+elif [[ ${ARCHITECTURE} == x86_64 ]]; then
+   BINARY_FOLDER=X86-64
+   echo "Using Binary in Folder:" ${BINARY_FOLDER};
+
 else
   echo "Do NOT have ppup1090 binary for your OS.....aborting installation"
   exit
@@ -75,8 +79,8 @@ fi
 
 echo "Copying binary to" ${INSTALL_FOLDER}
 cp ${INSTALL_FOLDER}/${BINARY_FOLDER}/ppup1090 ${INSTALL_FOLDER}/
+echo "Making executable the binary" ${INSTALL_FOLDER}/ppup1090
 chmod +x ${INSTALL_FOLDER}/ppup1090
- 
 
 echo "Creating symlink to ppup1090 binary in folder /usr/bin/ "
 ln -s ${INSTALL_FOLDER}/ppup1090 /usr/bin/ppup1090
