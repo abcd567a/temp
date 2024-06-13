@@ -38,6 +38,7 @@ echo "Downloading compiled binaries from coaa.co.uk"
 wget -O ${INSTALL_FOLDER}/${VERSION}.zip https://www.coaa.co.uk/${VERSION}.zip
 
 echo "Unzipping compiled binaries"
+apt install --no-install-recommends unzip
 unzip ${INSTALL_FOLDER}/${VERSION}.zip -d ${INSTALL_FOLDER}
 
 echo "Detecting which binary should be copied to" ${INSTALL_FOLDER}
