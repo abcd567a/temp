@@ -15,8 +15,8 @@ OS_VERSION=`lsb_release -sc`
 
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 
-## UBUNTU
-if [[ ${OS_VERSION} == noble ]]; then
+## UBUNTU 24 & Debian 13
+if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]]; then
   OS_VERSION=bookworm
   
 ## ANY OTHER
