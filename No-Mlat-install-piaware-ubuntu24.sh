@@ -150,6 +150,14 @@ echo -e "\e[32mInstalling piaware package\e[39m"
 cd ../
 dpkg -i piaware_${PIAWARE_VER}_*.deb
 
+## Adding pre-built fa-mlat-client if architecture is x86_64
+ARCH=`uname -m`
+if [[ ${ARCH} == x86_64 ]]; then
+  wget https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client.zip
+  unzip -d /usr/lib/piaware/helpers/ fa-mlat-client.zip
+  chmod +x /usr/lib/piaware/helpers/fa-mlat-client
+fi
+
 systemctl enable piaware
 systemctl restart piaware
 
@@ -168,7 +176,9 @@ echo ""
 echo -e "\e[39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[39m"
 echo -e "\e[94m    https://flightaware.com/adsb/piaware/claim \e[39m"
 echo ""
+if [[ ${ARCH} != x86_64 ]]; then
 echo -e "\e[1;35mThe piaware has been built WITHOUT fa-mlat-client \e[39m"
 echo -e "\e[1;35mdue to mlat-client is incompatible to Python 3.12.... \e[39m"
 echo -e "\e[1;31mMLAT will NOT be enabled .... \e[39m"
+fi
 
