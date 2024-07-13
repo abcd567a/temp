@@ -153,13 +153,13 @@ dpkg -i piaware_${PIAWARE_VER}_*.deb
 echo -e "\e[32mAdding pre-built fa-mlat-client if architecture is x86_64 or aarch64\e[39m"
 ARCH=`uname -m`
 if [[ ${ARCH} == x86_64 ]]; then
-  wget https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client.zip
+  wget -q https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client.zip
   unzip -q -o -d /usr/lib/piaware/helpers/ fa-mlat-client.zip
   chmod +x /usr/lib/piaware/helpers/fa-mlat-client
 fi
 
 if [[ ${ARCH} == aarch64 ]]; then
-  wget https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client-aarch64.zip
+  wget -q https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client-aarch64.zip
   unzip -q -o -d /usr/lib/piaware/helpers/ fa-mlat-client-aarch64.zip
   chmod +x /usr/lib/piaware/helpers/fa-mlat-client
 fi
