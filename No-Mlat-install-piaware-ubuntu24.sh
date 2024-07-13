@@ -182,7 +182,7 @@ echo ""
 echo -e "\e[39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[39m"
 echo -e "\e[94m    https://flightaware.com/adsb/piaware/claim \e[39m"
 echo ""
-if [[ ${ARCH} != x86_64 || ${ARCH} != aarch64 ]]; then
+if [[ ${ARCH} != x86_64 ]]; then
 echo -e "\e[1;35mThe piaware has been built WITHOUT fa-mlat-client \e[39m"
 echo -e "\e[1;35mdue to mlat-client is incompatible to Python 3.12.... \e[39m"
 echo -e "\e[1;31mMLAT will NOT be enabled .... \e[39m"
