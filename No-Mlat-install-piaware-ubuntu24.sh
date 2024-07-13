@@ -150,7 +150,7 @@ echo -e "\e[32mInstalling piaware package\e[39m"
 cd ../
 dpkg -i piaware_${PIAWARE_VER}_*.deb
 
-## Adding pre-built fa-mlat-client if architecture is x86_64 or aarch64
+echo -e "\e[32mAdding pre-built fa-mlat-client if architecture is x86_64 or aarch64\e[39m"
 ARCH=`uname -m`
 if [[ ${ARCH} == x86_64 ]]; then
   wget https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client.zip
