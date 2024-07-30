@@ -15,8 +15,14 @@ OS_VERSION=`lsb_release -sc`
 
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 
-## UBUNTU 24 & Debian 13
-if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]]; then
+## Debian 13
+if [[ ${OS_VERSION} == trixie ]]; then
+  wget http://http.us.debian.org/debian/pool/main/i/iproute2/iproute2_6.1.0-3_amd64.deb
+  dpkg -i iproute2_6.1.0-3_amd64.deb
+  apt-mark hold iproute2
+  OS_VERSION=bookworm
+## UBUNTU 24
+if [[ ${OS_VERSION} == noble ]]; then
   OS_VERSION=bookworm
   
 ## ANY OTHER
