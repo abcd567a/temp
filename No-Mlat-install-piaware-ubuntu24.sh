@@ -24,6 +24,7 @@ if [[ ${OS_VERSION} == trixie ]]; then
 
 ## UBUNTU 24
 elif [[ ${OS_VERSION} == noble ]]; then
+  apt install -y iproute2 
   OS_VERSION=bookworm
   
 ## ANY OTHER
@@ -105,7 +106,6 @@ echo -e "\e[32mInstalling piaware dependencies \e[39m"
 #Depends:
 apt install -y \
 net-tools \
-iproute2 \
 tclx8.4 \
 tcl8.6 \
 tcllib \
