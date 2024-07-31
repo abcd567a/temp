@@ -164,7 +164,7 @@ if [[ ${ARCH} == aarch64 ]]; then
   chmod +x /usr/lib/piaware/helpers/fa-mlat-client
 fi
 
-if [[ ${OS_VERSION} == trixie ]]; then
+if [[ `lsb_release -sc` == trixie ]]; then
   ln -sf /usr/bin/ip /sbin/ip
 fi
 
