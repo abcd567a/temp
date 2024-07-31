@@ -15,16 +15,8 @@ OS_VERSION=`lsb_release -sc`
 
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 
-## Debian 13
-if [[ ${OS_VERSION} == trixie ]]; then
-  wget -O iproute2_6.1.0-3_amd64.deb http://http.us.debian.org/debian/pool/main/i/iproute2/iproute2_6.1.0-3_amd64.deb
-  dpkg -i iproute2_6.1.0-3_amd64.deb
-  apt-mark hold iproute2
-  OS_VERSION=bookworm
-
-## UBUNTU 24
-elif [[ ${OS_VERSION} == noble ]]; then
-  apt install -y iproute2 
+## UBUNTU 24 & Debian 13
+if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]]; then
   OS_VERSION=bookworm
   
 ## ANY OTHER
@@ -106,6 +98,7 @@ echo -e "\e[32mInstalling piaware dependencies \e[39m"
 #Depends:
 apt install -y \
 net-tools \
+iproute2 \
 tclx8.4 \
 tcl8.6 \
 tcllib \
@@ -169,6 +162,10 @@ if [[ ${ARCH} == aarch64 ]]; then
   wget -q https://github.com/abcd567a/temp/releases/download/pythhon3.12/fa-mlat-client-aarch64.zip
   unzip -q -o -d /usr/lib/piaware/helpers/ fa-mlat-client-aarch64.zip
   chmod +x /usr/lib/piaware/helpers/fa-mlat-client
+fi
+
+if [[ ${OS_VERSION} == trixie ]]; then
+  ln -sf /usr/bin/ip /sbin/ip
 fi
 
 systemctl enable piaware
