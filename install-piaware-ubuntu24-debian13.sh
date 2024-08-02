@@ -12,7 +12,7 @@ apt install -y lsb-release
 OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
-OS_EQV-VERSION=""
+OS_EQV_VERSION=""
 
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 
