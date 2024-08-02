@@ -37,7 +37,7 @@ build-essential \
 devscripts
 
 ##Build-Depends: 
-sudo apt install -y \
+apt install -y \
 debhelper \
 tcl8.6-dev \
 autoconf \
@@ -59,7 +59,7 @@ libboost-filesystem-dev \
 patchelf
 
 ##Depends
-sudo apt install -y \
+apt install -y \
 net-tools \
 iproute2 \
 tcl \
@@ -86,8 +86,6 @@ fi
 echo -e "\e[32mCloning tcl-tls source code \e[39m"
 git clone https://github.com/flightaware/tcltls-rebuild
 cd  ${INSTALL_DIRECTORY}/tcltls-rebuild
-git fetch --all
-git reset --hard origin/master
 echo -e "\e[32mbuilding tcl-tls package \e[39m"
 if [[ ${OS_EQV_VERSION} == trixie ]]; then 
   ./prepare-build.sh bullseye
