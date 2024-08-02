@@ -91,10 +91,6 @@ if [[ ${OS_EQV_VERSION} == trixie ]]; then
   ./prepare-build.sh bullseye
   cd package-bullseye
   dpkg-buildpackage -b --no-sign
-else
-  ./prepare-build.sh ${OS_VERSION}
-  cd package-${OS_VERSION}
-  dpkg-buildpackage -b --no-sign
 fi
 
 echo -e "\e[32mInstalling tcl-tls package \e[39m"
