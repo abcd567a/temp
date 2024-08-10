@@ -31,13 +31,13 @@ echo -e "\e[36mBUILDING PACKAGE USING DEBIAN VER" ${OS_EQV_VERSION} "\e[39m"
 echo -e "\e[32mInstalling Build tools, Build dependencies, & other Dependencies\e[39m"
 
 ##Build-Tools
-apt install -y \
+apt install \
 git \
 build-essential \
 devscripts
 
 ##Build-Depends: 
-apt install -y \
+apt install \
 debhelper \
 tcl8.6-dev \
 autoconf \
@@ -59,7 +59,7 @@ libboost-filesystem-dev \
 patchelf
 
 ##Depends
-apt install -y \
+apt install \
 net-tools \
 iproute2 \
 tcl \
@@ -70,7 +70,7 @@ itcl3
 
 echo -e "\e[32mBuilding & Installing tcl-tls from source code. \e[39m"
 echo -e "\e[32mInstalling tcl-tls dependencies \e[39m"
-apt install -y \
+apt install \
 libssl-dev \
 tcl-dev \
 chrpath
