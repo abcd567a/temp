@@ -118,6 +118,12 @@ cd ${INSTALL_DIRECTORY}/piaware_builder
 echo -e "\e[32mBuilding the piaware package \e[39m"
 ./sensible-build.sh ${OS_EQV_VERSION}
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
+
+if [[ ${OS_VERSION} == trixie ]]; then
+  rm -rf dump1090
+  git clone -b dev https://github.com/flightaware/dump1090
+fi
+
 dpkg-buildpackage -b --no-sign 
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
 
