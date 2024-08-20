@@ -69,38 +69,9 @@ tcl \
 tclx8.4 \
 tcl8.6 \
 tcllib \
+tcl-tls \
 itcl3
 
-echo -e "\e[32mBuilding & Installing tcl-tls from source code. \e[39m"
-echo -e "\e[32mInstalling tcl-tls dependencies \e[39m"
-sleep 3
-apt install -y \
-libssl-dev \
-tcl-dev \
-chrpath
-
-cd  ${INSTALL_DIRECTORY}
-
-if [[ -d tcltls-rebuild ]];
-then
-echo -e "\e[32mRenaming existing tcltls-rebuild folder by adding prefix \"old\" \e[39m"
-mv tcltls-rebuild tcltls-rebuild-old-$RANDOM
-fi
-
-echo -e "\e[32mCloning tcl-tls source code \e[39m"
-git clone https://github.com/flightaware/tcltls-rebuild
-cd  ${INSTALL_DIRECTORY}/tcltls-rebuild
-echo -e "\e[32mbuilding tcl-tls package \e[39m"
-if [[ ${OS_EQV_VERSION} == trixie ]]; then 
-  ./prepare-build.sh bullseye
-  cd package-bullseye
-  dpkg-buildpackage -b --no-sign
-fi
-
-echo -e "\e[32mInstalling tcl-tls package \e[39m"
-cd ../
-dpkg -i tcl-tls_*.deb
-apt-mark hold tcl-tls
 
 echo -e "\e[36mBUILDING PIAWARE PACKAGE USING DEBIAN VER" ${OS_VERSION} "\e[39m"
 
