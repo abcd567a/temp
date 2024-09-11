@@ -17,7 +17,7 @@ OS_EQV_VERSION=""
 echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
 
 ## UBUNTU 24 & Debian 13
-if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]]; then
+if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]] || [[ ${OS_VERSION} == wilma ]]; then
   OS_EQV_VERSION=trixie
   
 ## ANY OTHER
