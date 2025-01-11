@@ -87,7 +87,8 @@ mv piaware_builder piaware_builder-old-$RANDOM
 fi
 
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
-git clone https://github.com/abcd567a/piaware_builder
+git clone --depth 1 https://github.com/abcd567a/piaware_builder
+
 cd ${INSTALL_DIRECTORY}/piaware_builder
 echo -e "\e[32mBuilding the piaware package \e[39m"
 ./sensible-build.sh ${OS_EQV_VERSION}
