@@ -107,7 +107,7 @@ PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: /
 echo -e "\e[32mInstalling piaware version: " ${PIAWARE_VER} "\e[39m"
 sleep 3
 cd ../
-##dpkg -i piaware_${PIAWARE_VER}_*.deb
+dpkg -i piaware_${PIAWARE_VER}_*.deb
 
 systemctl enable piaware
 systemctl restart piaware
