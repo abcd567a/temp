@@ -32,11 +32,11 @@ else
 PYTHON_HOST_PLATFORM=$(shell $(PYTHON3) -c "import sysconfig; print(sysconfig.get_platform())")
 endif
 
-override_dh_auto_clean: clean_tcllauncher clean_dump1090 clean_mlat-client clean_piaware clean_dump978
+override_dh_auto_clean: clean_tcllauncher clean_dump1090 clean_piaware clean_dump978
 
 override_dh_auto_configure: check_versions configure_tcllauncher
 
-override_dh_auto_build: build_tcllauncher build_dump1090 build_mlat-client build_dump978
+override_dh_auto_build: build_tcllauncher build_dump1090 build_dump978
 
 override_dh_auto_install: install_tcllauncher install_dump1090 install_mlat-client install_piaware install_dump978
 
