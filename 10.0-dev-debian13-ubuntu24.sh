@@ -97,7 +97,7 @@ cd ${INSTALL_DIRECTORY}/piaware_builder
 echo -e "\e[32mBuilding fa-mlat-client \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
 ./setup.py build
-./setup.py install --prefix=${PWD}
+./setup.py install
 
 echo -e "\e[32mBuilding the piaware package \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
