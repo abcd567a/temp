@@ -79,7 +79,8 @@ install_dump978:
 build_mlat-client:
 
 install_mlat-client:
-	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers mlat-client/local/bin/fa-mlat-client
+	##install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers mlat-client/local/bin/fa-mlat-client
+	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers /usr/local/bin/fa-mlat-client
 
 clean_mlat-client:
 
