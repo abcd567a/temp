@@ -83,8 +83,6 @@ install_mlat-client:
 	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers /usr/local/bin/fa-mlat-client
 
 clean_mlat-client:
-	rm /usr/local/bin/fa-mlat-client
-	rm /usr/local/bin/mlat-client
 
 install_piaware:
 	make -C piaware DESTDIR=$(CURDIR)/debian/piaware install INSTALL_SUDOERS=1 SYSTEMD= SYSVINIT= TCLLAUNCHER=$(CURDIR)/debian/piaware/usr/bin/tcllauncher
