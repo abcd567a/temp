@@ -104,7 +104,11 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 dpkg-buildpackage -b --no-sign 
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
 
-echo -e "\e[32mInstalling piaware version: " ${PIAWARE_VER} "\e[39m"
+echo -e "\e[32mCleaning fa-mlat-client & mlat-client \e[39m"
+rm /usr/local/bin/fa-mlat-client
+rm /usr/local/bin/mlat-client
+
+echo -e "\e[32mInstalling piaware version:" ${PIAWARE_VER} "\e[39m"
 sleep 3
 cd ../
 dpkg -i piaware_${PIAWARE_VER}_*.deb
