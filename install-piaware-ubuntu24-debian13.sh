@@ -8,10 +8,9 @@ trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
 
 INSTALL_DIRECTORY=${PWD}
 
-
 apt install -y lsb-release
 
-## Detect OS 
+## Detect OS
 OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
@@ -22,8 +21,6 @@ echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39
 ## UBUNTU 24, Debian 13, and LinuxMint 22
 if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]] || [[ ${OS_VERSION} == wilma ]] || [[ ${OS_VERSION} == xia ]]; then
   OS_EQV_VERSION=trixie
-  
-## ANY OTHER
 else
    echo -e "\e[01;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[39m"
    exit
@@ -41,7 +38,7 @@ devscripts
 
 echo -e "\e[32mInstalling Build dependencies \e[39m"
 sleep 3
-##Build-Depends: 
+##Build-Depends:
 apt install -y \
 debhelper \
 tcl8.6-dev \
@@ -75,11 +72,8 @@ tcllib \
 tcl-tls \
 itcl3
 
-
 echo -e "\e[36mBUILDING PIAWARE PACKAGE USING DEBIAN VER" ${OS_VERSION} "\e[39m"
-
 cd ${INSTALL_DIRECTORY}
-
 if [[ -d piaware_builder ]];
 then
 echo -e "\e[32mRenaming existing piaware_builder folder by adding prefix \"old\" \e[39m"
@@ -97,10 +91,19 @@ cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 if [[ ${OS_VERSION} == trixie ]]; then
   rm -rf dump1090
   git clone -b dev https://github.com/flightaware/dump1090
+  wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
+  chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
+  cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
+  ./setup.py build
+  ./setup.py install
 fi
 
-dpkg-buildpackage -b --no-sign 
+cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
+dpkg-buildpackage -b --no-sign
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
+echo -e "\e[32mCleaning mlat-client\e[39m"
+rm /usr/local/bin/mlat-client
+rm /usr/local/bin/fa-mlat-client
 
 echo -e "\e[32mInstalling piaware package\e[39m"
 cd ../
