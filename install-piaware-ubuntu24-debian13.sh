@@ -80,23 +80,25 @@ echo -e "\e[32mRenaming existing piaware_builder folder by adding prefix \"old\"
 mv piaware_builder piaware_builder-old-$RANDOM
 fi
 
+
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
-git clone --depth 1 https://github.com/abcd567a/piaware_builder
-
-cd ${INSTALL_DIRECTORY}/piaware_builder
-echo -e "\e[32mBuilding the piaware package \e[39m"
-./sensible-build.sh ${OS_EQV_VERSION}
-
-if [[ ${OS_VERSION} == trixie ]]; then
-  rm -rf dump1090
-  git clone -b dev https://github.com/flightaware/dump1090
-  wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
-  chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
-  cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
-  ./setup.py build
-  ./setup.py install
+if [[ ! ${OS_VERSION} == trixie ]]; then
+   git clone --depth 1 https://github.com/abcd567a/piaware_builder
+   cd ${INSTALL_DIRECTORY}/piaware_builder
+   ./sensible-build.sh ${OS_EQV_VERSION}
 fi
 
+if [[ ${OS_VERSION} == trixie ]]; then
+   OS_EQV_VERSION=bookworm
+   git clone -b dev https://github.com/flightaware/piaware_builder
+   wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
+   chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
+   cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
+   ./setup.py build
+   ./setup.py install
+fi
+
+echo -e "\e[32mBuilding the piaware package \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 dpkg-buildpackage -b --no-sign
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
