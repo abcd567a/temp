@@ -86,7 +86,6 @@ git clone --depth 1 https://github.com/abcd567a/piaware_builder
 cd ${INSTALL_DIRECTORY}/piaware_builder
 echo -e "\e[32mBuilding the piaware package \e[39m"
 ./sensible-build.sh ${OS_EQV_VERSION}
-cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 
 if [[ ${OS_VERSION} == trixie ]]; then
   rm -rf dump1090
@@ -101,9 +100,12 @@ fi
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 dpkg-buildpackage -b --no-sign
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
-echo -e "\e[32mCleaning mlat-client\e[39m"
-rm /usr/local/bin/mlat-client
-rm /usr/local/bin/fa-mlat-client
+
+if [[ ${OS_VERSION} == trixie ]]; then
+  echo -e "\e[32mCleaning mlat-client\e[39m"
+  rm /usr/local/bin/mlat-client
+  rm /usr/local/bin/fa-mlat-client
+fi
 
 echo -e "\e[32mInstalling piaware package\e[39m"
 cd ../
