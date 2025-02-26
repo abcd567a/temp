@@ -20,7 +20,7 @@ echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39
 
 ## UBUNTU 24, Debian 13, and LinuxMint 22
 if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == trixie ]] || [[ ${OS_VERSION} == wilma ]] || [[ ${OS_VERSION} == xia ]]; then
-  OS_EQV_VERSION=trixie
+      echo -e "\e[01;31mDetected OS version" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "Proceeding with Installation\e[39m"
 else
    echo -e "\e[01;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[39m"
    exit
@@ -83,6 +83,7 @@ fi
 
 echo -e "\e[32mCloning piaware source code and building package \e[39m"
 if [[ ! ${OS_VERSION} == trixie ]]; then
+   OS_EQV_VERSION=trixie
    git clone --depth 1 https://github.com/abcd567a/piaware_builder
    cd ${INSTALL_DIRECTORY}/piaware_builder
    ./sensible-build.sh ${OS_EQV_VERSION}
@@ -91,6 +92,8 @@ fi
 if [[ ${OS_VERSION} == trixie ]]; then
    OS_EQV_VERSION=bookworm
    git clone -b dev https://github.com/flightaware/piaware_builder
+   cd ${INSTALL_DIRECTORY}/piaware_builder
+   ./sensible-build.sh ${OS_EQV_VERSION}
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
    chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
    cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
