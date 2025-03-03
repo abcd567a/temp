@@ -70,7 +70,8 @@ tclx8.4 \
 tcl8.6 \
 tcllib \
 tcl-tls \
-itcl3
+itcl3 \
+rsyslog
 
 echo -e "\e[36mBUILDING PIAWARE PACKAGE USING DEBIAN VER" ${OS_VERSION} "\e[39m"
 cd ${INSTALL_DIRECTORY}
