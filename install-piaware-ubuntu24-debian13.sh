@@ -92,7 +92,7 @@ fi
 
 if [[ ${OS_VERSION} == trixie ]]; then
    OS_EQV_VERSION=bookworm
-   git clone -b dev https://github.com/flightaware/piaware_builder
+   git clone https://github.com/flightaware/piaware_builder
    cd ${INSTALL_DIRECTORY}/piaware_builder
    ./sensible-build.sh ${OS_EQV_VERSION}
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
