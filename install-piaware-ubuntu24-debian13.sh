@@ -111,6 +111,7 @@ if [[ ${OS_VERSION} == trixie ]]; then
   echo -e "\e[32mCleaning mlat-client\e[39m"
   rm /usr/local/bin/mlat-client
   rm /usr/local/bin/fa-mlat-client
+  rm -rf /usr/local/lib/python3.13
 fi
 
 echo -e "\e[32mInstalling piaware package\e[39m"
