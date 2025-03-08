@@ -83,22 +83,15 @@ fi
 
 
 echo -e "\e[32mCloning piaware source code \e[39m"
-if [[ ! ${OS_VERSION} == trixie ]]; then
-   OS_EQV_VERSION=trixie
-   git clone --depth 1 https://github.com/abcd567a/piaware_builder
-   cd ${INSTALL_DIRECTORY}/piaware_builder
-   ./sensible-build.sh ${OS_EQV_VERSION}
-fi
-
+OS_EQV_VERSION=trixie
+git clone --depth 1 https://github.com/abcd567a/piaware_builder
+cd ${INSTALL_DIRECTORY}/piaware_builder
+./sensible-build.sh ${OS_EQV_VERSION}
 if [[ ${OS_VERSION} == trixie ]]; then
-   OS_EQV_VERSION=trixie
-   git clone --depth 1 https://github.com/abcd567a/piaware_builder
-   cd ${INSTALL_DIRECTORY}/piaware_builder
-   ./sensible-build.sh ${OS_EQV_VERSION}
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
-   chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
 fi
-
+chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
+   
 echo -e "\e[32mBuilding the piaware package \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 dpkg-buildpackage -b --no-sign
