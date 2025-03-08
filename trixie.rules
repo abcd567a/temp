@@ -36,7 +36,7 @@ override_dh_auto_clean: clean_tcllauncher clean_dump1090 clean_piaware clean_dum
 
 override_dh_auto_configure: check_versions configure_tcllauncher
 
-override_dh_auto_build: build_tcllauncher build_dump1090 build_dump978
+override_dh_auto_build: build_tcllauncher build_dump1090 build_dump978 build_mlat-client
 
 override_dh_auto_install: install_tcllauncher install_dump1090 install_mlat-client install_piaware install_dump978
 
@@ -77,6 +77,7 @@ install_dump978:
 	install -t $(CURDIR)/debian/piaware/usr/lib/piaware/helpers dump978/faup978
 
 build_mlat-client:
+	cd mlat-client && ./setup.py build && ./setup.py install
 
 install_mlat-client:
 	install -d $(CURDIR)/debian/piaware/usr/lib/piaware/helpers
