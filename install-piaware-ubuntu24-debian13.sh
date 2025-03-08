@@ -82,7 +82,7 @@ mv piaware_builder piaware_builder-old-$RANDOM
 fi
 
 
-echo -e "\e[32mCloning piaware source code and building package \e[39m"
+echo -e "\e[32mCloning piaware source code \e[39m"
 if [[ ! ${OS_VERSION} == trixie ]]; then
    OS_EQV_VERSION=trixie
    git clone --depth 1 https://github.com/abcd567a/piaware_builder
@@ -91,15 +91,12 @@ if [[ ! ${OS_VERSION} == trixie ]]; then
 fi
 
 if [[ ${OS_VERSION} == trixie ]]; then
-   OS_EQV_VERSION=bookworm
-   git clone https://github.com/flightaware/piaware_builder
+   OS_EQV_VERSION=trixie
+   git clone --depth 1 https://github.com/abcd567a/piaware_builder
    cd ${INSTALL_DIRECTORY}/piaware_builder
    ./sensible-build.sh ${OS_EQV_VERSION}
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
    chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
-   cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/mlat-client
-   ./setup.py build
-   ./setup.py install
 fi
 
 echo -e "\e[32mBuilding the piaware package \e[39m"
