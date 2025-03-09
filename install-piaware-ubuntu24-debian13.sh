@@ -90,18 +90,11 @@ cd ${INSTALL_DIRECTORY}/piaware_builder
 if [[ ${OS_VERSION} == trixie ]]; then
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
 fi
-   
+
 echo -e "\e[32mBuilding the piaware package \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
 dpkg-buildpackage -b --no-sign
 PIAWARE_VER=$(grep "Version:" debian/piaware/DEBIAN/control | sed 's/^Version: //')
-
-if [[ ${OS_VERSION} == trixie ]]; then
-  echo -e "\e[32mCleaning mlat-client\e[39m"
-  rm /usr/local/bin/mlat-client
-  rm /usr/local/bin/fa-mlat-client
-  rm -rf /usr/local/lib/python3.13
-fi
 
 echo -e "\e[32mInstalling piaware package\e[39m"
 cd ../
