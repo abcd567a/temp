@@ -90,7 +90,6 @@ cd ${INSTALL_DIRECTORY}/piaware_builder
 if [[ ${OS_VERSION} == trixie ]]; then
    wget -O ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules https://github.com/abcd567a/temp/raw/main/trixie.rules
 fi
-chmod +x ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}/debian/rules
    
 echo -e "\e[32mBuilding the piaware package \e[39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_EQV_VERSION}
