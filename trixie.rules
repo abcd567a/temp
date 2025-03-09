@@ -85,6 +85,8 @@ install_mlat-client:
 	install -d $(CURDIR)/debian/piaware/usr/lib/python3.13/dist-packages
 	mv /usr/local/lib/python3.13/dist-packages/MlatClient-0.2.13-py3.13-linux-x86_64.egg $(CURDIR)/debian/piaware/usr/lib/python3.13/dist-packages/
 	mv /usr/local/lib/python3.13/dist-packages/easy-install.pth $(CURDIR)/debian/piaware/usr/lib/python3.13/dist-packages/
+	rm /usr/local/bin/mlat-client
+	rm /usr/local/bin/fa-mlat-client
 
 clean_mlat-client:
 
