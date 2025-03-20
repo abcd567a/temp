@@ -72,7 +72,7 @@ tcllib \
 itcl3 \
 rsyslog
 
-echo -e "\e[1;32mBuilding & Installing tcl-tls from source code. \e[o;39m"
+echo -e "\e[1;32mBuilding & Installing tcl-tls from source code. \e[0;39m"
 sleep 3
 echo -e "\e[1;32mInstalling dependencies for tcl-tls \e[0;39m"
 sleep 3
