@@ -15,19 +15,20 @@ OS_ID=`lsb_release -si`
 OS_RELEASE=`lsb_release -sr`
 OS_VERSION=`lsb_release -sc`
 
-echo -e "\e[35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[39m"
+echo -e "\e[1;35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[0;39m"
 
 ## Debian 13 trixie
 if [[ ${OS_VERSION} == trixie ]]; then
-      echo -e "\e[01;31mDetected OS version" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "Proceeding with Installation\e[39m"
+      echo -e "\e[1;31mProceeding with Installation\e[0;39m"
 else
-   echo -e "\e[01;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[39m"
+   echo -e "\e[1;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[0;39m"
+   echo -e "\e[1;31mExiting "\e[0;39m"
    exit
 fi
 
-echo -e "\e[36mBUILDING PACKAGE USING DEBIAN VER" ${OS_EQV_VERSION} "\e[39m"
+echo -e "\e[1;36mBUILDING PACKAGE USING DEBIAN VER" ${OS_VERSION} "\e[0;39m"
 
-echo -e "\e[32mInstalling Build tools \e[39m"
+echo -e "\e[1;32mInstalling Build tools \e[0;39m"
 sleep 3
 ##Build-Tools
 apt install -y \
@@ -35,7 +36,7 @@ git \
 build-essential \
 devscripts
 
-echo -e "\e[32mInstalling Build dependencies \e[39m"
+echo -e "\e[1;32mInstalling Build dependencies \e[0;39m"
 sleep 3
 ##Build-Depends:
 apt install -y \
@@ -58,7 +59,7 @@ libboost-regex-dev \
 libboost-filesystem-dev \
 patchelf
 
-echo -e "\e[32mInstalling other Dependencies\e[39m"
+echo -e "\e[1;32mInstalling other Dependencies\e[0;39m"
 sleep 3
 ##Depends
 apt install -y \
@@ -72,13 +73,9 @@ tcl-tls \
 itcl3 \
 rsyslog
 
-
-
-
-
-echo -e "\e[32mBuilding & Installing tcl-tls from source code. \e[39m"
+echo -e "\e[1;32mBuilding & Installing tcl-tls from source code. \e[o;39m"
 sleep 3
-echo -e "\e[32mInstalling tcl-tls dependencies \e[39m"
+echo -e "\e[1;32mInstalling tcl-tls dependencies \e[0;39m"
 sleep 3
 apt install -y \
 libssl-dev \
@@ -93,11 +90,11 @@ echo -e "\e[32mRenaming existing tcltls-rebuild folder by adding prefix \"old\" 
 mv tcltls-rebuild tcltls-rebuild-old-$RANDOM
 fi
 
-echo -e "\e[32mCloning tcl-tls source code \e[39m"
+echo -e "\e[1;32mCloning tcl-tls source code \e[0;39m"
 sleep 3
 git clone --depth 1 https://github.com/flightaware/tcltls-rebuild
 cd  ${INSTALL_DIRECTORY}/tcltls-rebuild
-echo -e "\e[32mbuilding tcl-tls package \e[39m"
+echo -e "\e[1;32mbuilding tcl-tls package \e[0;39m"
 ./prepare-build.sh bullseye
 cd package-bullseye
 dpkg-buildpackage -b --no-sign
@@ -112,14 +109,14 @@ echo -e "\e[1;36mBUILDING PIAWARE PACKAGE USING DEBIAN VER" ${OS_VERSION} "\e[0;
 cd ${INSTALL_DIRECTORY}
 if [[ -d piaware_builder ]];
 then
-echo -e "\e[32mRenaming existing piaware_builder folder by adding prefix \"old\" \e[39m"
+echo -e "\e[1;32mRenaming existing piaware_builder folder by adding prefix \"old\" \e[0;39m"
 mv piaware_builder piaware_builder-old-$RANDOM
 fi
 
-echo -e "\e[32mCloning piaware source code \e[39m"
+echo -e "\e[1;32mCloning piaware source code \e[0;39m"
 git clone --depth 1 https://github.com/abcd567a/piaware_builder
 
-echo -e "\e[32mBuilding the piaware package \e[39m"
+echo -e "\e[1;32mBuilding the piaware package \e[0;39m"
 cd ${INSTALL_DIRECTORY}/piaware_builder
 ./sensible-build.sh ${OS_VERSION}
 cd ${INSTALL_DIRECTORY}/piaware_builder/package-${OS_VERSION}
@@ -136,8 +133,8 @@ systemctl restart piaware
 echo ""
 echo -e "\e[1;32mPIAWARE INSTALLATION COMPLETED \e[0;39m"
 echo ""
-echo -e "\e[39mIf you already have  feeder-id, please configure piaware with it \e[39m"
-echo -e "\e[39mFeeder Id is available on this address while loggedin: \e[39m"
+echo -e "\e[1;39mIf you already have  feeder-id, please configure piaware with it \e[0;39m"
+echo -e "\e[1;39mFeeder Id is available on this address while loggedin: \e[0;39m"
 echo -e "\e[94m    https://flightaware.com/adsb/stats/user/ \e[39m"
 echo ""
 echo -e "\e[39m    sudo piaware-config feeder-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \e[39m"
@@ -145,7 +142,7 @@ echo -e "\e[39m    sudo piaware-config allow-manual-updates yes \e[39m"
 echo -e "\e[39m    sudo piaware-config allow-auto-updates yes \e[39m"
 echo -e "\e[39m    sudo systemctl restart piaware \e[39m"
 echo ""
-echo -e "\e[39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[39m"
+echo -e "\e[1;39mIf you dont already have a feeder-id, please go to Flightaware Claim page while loggedin \e[0;39m"
 echo -e "\e[94m    https://flightaware.com/adsb/piaware/claim \e[39m"
 echo ""
 
