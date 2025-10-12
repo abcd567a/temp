@@ -48,6 +48,7 @@ sed -i 's/^network_mode=.*/network_mode=true/' /etc/rbfeeder.ini
 
 echo "Creating User dump1090 to run dump1090-rb"
 sudo adduser --system --no-create-home dump1090
+sudo usermod -aG plugdev dump1090
 
 echo "Assigning ownership of dedicated folder to user dump1090"
 sudo chown dump1090:dump1090 -R ${DEDICATED_FOLDER}
