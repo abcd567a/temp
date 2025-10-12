@@ -33,7 +33,7 @@ echo "Writing code to config file dump1090-rb"
 --net-bi-port 30004,30104
 --net-bo-port 30005
 --quiet 
---write-json /var/run/dump1090-rb 
+--write-json /var/run/dump1090
 --mlat 
 --forward-mlat
 --modeac 
@@ -64,7 +64,7 @@ Wants=network.target
 After=network.target
 [Service]
 User=dump1090
-RuntimeDirectory=dump1090-rb
+RuntimeDirectory=dump1090
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${DEDICATED_FOLDER}/startup.sh
 SyslogIdentifier=dump1090-rb
