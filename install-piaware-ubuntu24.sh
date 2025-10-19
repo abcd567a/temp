@@ -19,7 +19,7 @@ OS_EQV_VERSION="noble"
 echo -e "\e[1;35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[0;39m"
 
 ## UBUNTU 24, Debian 13, and LinuxMint 22
-if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == wilma ]] || [[ ${OS_VERSION} == xia ]]; then
+if [[ ${OS_VERSION} == noble ]] || [[ ${OS_VERSION} == wilma ]] || [[ ${OS_VERSION} == xia ]] || [[ ${OS_VERSION} == zara ]] ; then
       echo -e "\e[01;31mDetected OS version" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "Proceeding with Installation\e[0;39m"
 else
    echo -e "\e[01;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[39m"
