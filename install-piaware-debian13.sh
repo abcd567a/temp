@@ -126,8 +126,14 @@ echo -e "\e[1;32mInstalling piaware package\e[0;39m"
 cd ../
 dpkg -i piaware_${PIAWARE_VER}_*.deb
 
+if [[ `ps --no-headers -o comm 1` == "systemd" ]]; then
 systemctl enable piaware
 systemctl restart piaware
+fi
+
+echo -e "\e[32mFor MX-LINUX, antiX, and other Debian based OS using SysVinit instead of Systemd,\e[39m"
+echo -e "\e[32mBug Fix for \"service piaware status\" command\e[39m"
+sed -i 's/\/usr\/bin\/piaware-config -status/status_of_proc \$DAEMON /' /etc/init.d/piaware 
 
 echo ""
 echo -e "\e[1;32mPIAWARE INSTALLATION COMPLETED \e[0;39m"
