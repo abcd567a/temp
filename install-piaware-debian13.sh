@@ -20,6 +20,10 @@ echo -e "\e[1;35mDETECTED OS VERSION" ${OS_ID} ${OS_RELEASE} ${OS_VERSION}  "\e[
 ## Debian 13 trixie
 if [[ ${OS_VERSION} == trixie ]]; then
       echo -e "\e[1;31mProceeding with Installation\e[0;39m"
+## Debian 14 forky
+elif [[ ${OS_VERSION} == forky ]]; then
+      OS_VERSION=trixie
+      echo -e "\e[1;31mProceeding with Installation\e[0;39m"
 else
    echo -e "\e[1;31mThis script is NOT for installation on" ${OS_ID} ${OS_RELEASE} ${OS_VERSION} "\e[0;39m"
    echo -e "\e[1;31mExiting \e[0;39m"
