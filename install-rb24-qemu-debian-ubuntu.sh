@@ -18,8 +18,9 @@ libprotobuf-c1:arm64 \
 librtlsdr0:arm64 \
 libtinfo6:arm64
 
-wget -O rbfeeder_1.0.15+bookworm_arm64.deb https://apt.rb24.com/pool/main/r/rbfeeder/rbfeeder_1.0.15%2>
-sudo dpkg -i rbfeeder_1.0.15+bookworm_arm64.deb && sudo apt -y --fix-broken install
+wget -O rbfeeder_1.0.15+bookworm_arm64.deb https://apt.rb24.com/pool/main/r/rbfeeder/rbfeeder_1.0.15%2bbookworm_arm64.deb
+sudo dpkg -i rbfeeder_1.0.15+bookworm_arm64.deb || true 
+sudo apt -y --fix-broken install
 
 sudo systemctl restart rbfeeder
 
