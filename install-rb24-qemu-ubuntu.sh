@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-sudo apt update
+sudo apt update || true
 sudo apt -y install qemu-user qemu-user-binfmt binfmt-support
 
 echo "Adding line \"Architectures: amd64\" to existing file \"ubuntu.sources\", if not already there ..."
