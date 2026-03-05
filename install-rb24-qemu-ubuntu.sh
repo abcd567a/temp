@@ -2,16 +2,18 @@
 set -e
 
 sudo apt update || true
+
+echo -e "\e[1;32mInstalling packages to provide QEMU support ...\e[0;39m"
 sudo apt -y install qemu-user qemu-user-binfmt binfmt-support
 
-echo "Adding line \"Architectures: amd64\" to existing file \"ubuntu.sources\", if not already there ..."
+echo -e "\e[1;32mAdding line \"Architectures: amd64\" to existing file \"ubuntu.sources\", if not already there ...\e[0;39m"
 sudo sed -i '/Architectures: amd64/d' /etc/apt/sources.list.d/ubuntu.sources
 sudo sed -i '/Types: deb/a Architectures: amd64' /etc/apt/sources.list.d/ubuntu.sources
 
-echo "Adding arhitecture arm64 to system ..."
+echo -e "\e[1;32mAdding arhitecture arm64 to system ...\e[0;39m"
 sudo dpkg --add-architecture arm64
 
-echo "Creating arm64 apt-source file \"ubuntu-ports-arm64.sources\"   "
+echo -e "\e[1;32mCreating arm64 apt-source file \"ubuntu-ports-arm64.sources\"  \e[0;39m"
 ARM64_SOURCES_FILE=/etc/apt/sources.list.d/ubuntu-ports-arm64.sources
 touch ${ARM64_SOURCES_FILE}
 chmod 777 ${ARM64_SOURCES_FILE}
@@ -30,25 +32,19 @@ chmod 644 ${ARM64_SOURCES_FILE}
 
 sudo apt update
 
+echo -e "\e[1;32mInstalling package libc6:arm64 to provide ar m64 support ...\e[0;39m"
 sudo apt -y install libc6:arm64
 
-sudo apt install -y \
-libbladerf2:arm64 \
-libcurl4:arm64 \
-libglib2.0-0:arm64 \
-libjansson4:arm64 \
-libncurses6:arm64 \
-libprotobuf-c1:arm64 \
-libtinfo6:arm64
+echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"
+sudo apt install dirmngr gnupg
+gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
+gpg --export --armor F2A8428D3C354953 | sudo gpg --dearmor -o /etc/apt/keyrings/rb24.gpg
+echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm main" | sudo tee /etc/apt/sources.list.d/rb24.list
 
-echo "downloading and installing packge librtlsdr0:arm64 ..."
-wget -O librtlsdr0_0.6.0-4_arm64.deb http://http.us.debian.org/debian/pool/main/r/rtl-sdr/librtlsdr0_0.6.0-4_arm64.deb
-dpkg -i librtlsdr0_0.6.0-4_arm64.deb
+sudo apt update 
 
-echo "downloading & installing rbfeeder:arm64 ..."
-wget -O rbfeeder_1.0.15+bookworm_arm64.deb https://apt.rb24.com/pool/main/r/rbfeeder/rbfeeder_1.0.15%2bbookworm_arm64.deb
-sudo dpkg -i rbfeeder_1.0.15+bookworm_arm64.deb || true
-sudo apt -y --fix-broken install
+echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeeder:arm64 from RB24 repository ...\e[0;39m"
+sudo apt install rbfeeder
 
 sudo systemctl restart rbfeeder
 
