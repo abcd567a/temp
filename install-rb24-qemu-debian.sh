@@ -14,7 +14,7 @@ echo -e "\e[1;32mInstalling package libc6:arm64 to provide ar m64 support ...\e[
 sudo apt -y install libc6:arm64
 
 echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"
-sudo apt install dirmngr gnupg
+sudo apt install -y dirmngr gnupg
 gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
 gpg --export --armor F2A8428D3C354953 | sudo gpg --dearmor -o /etc/apt/keyrings/rb24.gpg
 echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm main" | sudo tee /etc/apt/sources.list.d/rb24.list
