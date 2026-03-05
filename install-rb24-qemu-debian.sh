@@ -22,7 +22,7 @@ echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm 
 sudo apt update
 
 echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeeder:arm64 from RB24 repository ...\e[0;39m"
-sudo apt install rbfeeder
+sudo apt install -y rbfeeder
 
 sudo systemctl restart rbfeeder
 
