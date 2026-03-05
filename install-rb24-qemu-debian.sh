@@ -8,19 +8,13 @@ sudo dpkg --add-architecture arm64
 sudo apt update
 sudo apt -y install libc6:arm64
 
-sudo apt install -y \
-libbladerf2:arm64 \
-libcurl4:arm64 \
-libglib2.0-0:arm64 \
-libjansson4:arm64 \
-libncurses6:arm64 \
-libprotobuf-c1:arm64 \
-librtlsdr0:arm64 \
-libtinfo6:arm64
+sudo apt install dirmngr gnupg
+gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
+gpg --export --armor F2A8428D3C354953 | sudo gpg --dearmor -o /etc/apt/keyrings/rb24.gpg
+echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm main" | sudo tee /etc/apt/sources.list.d/rb24.list
 
-wget -O rbfeeder_1.0.15+bookworm_arm64.deb https://apt.rb24.com/pool/main/r/rbfeeder/rbfeeder_1.0.15%2bbookworm_arm64.deb
-sudo dpkg -i rbfeeder_1.0.15+bookworm_arm64.deb || true 
-sudo apt -y --fix-broken install
+sudo apt update
+sudo apt install rbfeeder
 
 sudo systemctl restart rbfeeder
 
