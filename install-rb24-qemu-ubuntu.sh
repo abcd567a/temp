@@ -35,6 +35,10 @@ sudo apt update
 echo -e "\e[1;32mInstalling package libc6:arm64 to provide ar m64 support ...\e[0;39m"
 sudo apt -y install libc6:arm64
 
+echo -e "\e[1;32mDownloading & installing package \"librtlsdr0\" from Debian archieves ...\e[0;39m"
+sudo wget -O /tmp/librtlsdr0_0.6.0-4_arm64.deb http://http.us.debian.org/debian/pool/main/r/rtl-sdr/librtlsdr0_0.6.0-4_arm64.deb
+sudo dpkg -i /tmp/librtlsdr0_0.6.0-4_arm64.deb
+
 echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"
 sudo apt install -y dirmngr gnupg
 gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
