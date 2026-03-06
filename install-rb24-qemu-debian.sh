@@ -26,7 +26,8 @@ sudo apt install -y rbfeeder
 
 sudo systemctl restart rbfeeder
 
-echo -e "\e[1;35mPlese check your file /etc/rbfeeder.ini. It will contain your feeder key and station number \e[0;39m"
+echo " "
+echo -e "\e[1;35mPlese check your file \e[1;32m /etc/rbfeeder.ini \e" "\e[1;35m It will contain your feeder key and station number \e[0;39m"
 echo -e "\e[1;35mVisit Radarbox Claims web page to claim the key and link station to yor account \e[0;39m"
 echo -e "\e[1;35mYou must login to your Radarbox account when visisting Claims page \e[0;39m"
 
