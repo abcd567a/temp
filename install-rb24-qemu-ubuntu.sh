@@ -14,6 +14,7 @@ dpkg --add-architecture arm64
 
 
 if [[ ${OS_VER} == noble ]]; then
+cp -n /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.bak
 echo -e "\e[1;32mAdding line \"Architectures: amd64\" to existing file \"ubuntu.sources\", if not already there ...\e[0;39m"
 sed -i '/Architectures: amd64/d' /etc/apt/sources.list.d/ubuntu.sources
 sed -i '/Types: deb/a Architectures: amd64' /etc/apt/sources.list.d/ubuntu.sources
@@ -37,6 +38,7 @@ chmod 644 ${NOBLE_ARM64_SOURCES_FILE}
 
 
 elif [[ ${OS_VER} == jammy ]]; then
+cp -n /etc/apt/sources.list /etc/apt/sources.list.bak
 echo -e "\e[1;32mAdding \"[arch=amd64]\" after \"deb\" to all lines in existing file \"sources.list\" ...\e[0;39m"
 sed -i 's/^deb http/deb [arch=amd64] http/' /etc/apt/sources.list
 
