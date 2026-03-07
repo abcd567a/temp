@@ -52,6 +52,12 @@ sudo apt install -y rbfeeder
 
 sudo systemctl restart rbfeeder
 
+echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"
+wget -O /tmp/mlat-client_0.2.13_noble_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_noble_amd64.deb 
+sudo apt install -y python3-pyasyncore
+sudo apt install -y /tmp/mlat-client_0.2.13_noble_amd64.deb || true
+sudo apt-mark hold mlat-client || true
+
 echo " "
 echo -e "\e[1;35mPlese check your file \e[1;32m /etc/rbfeeder.ini \e" "\e[1;35m It will contain your feeder key and station number \e[0;39m"
 echo -e "\e[1;35mVisit Radarbox Claims web page to claim the key and link station to yor account \e[0;39m"
