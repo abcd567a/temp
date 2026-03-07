@@ -36,4 +36,5 @@ echo " "
 echo -e "\e[1;35mPlese check your file \e[1;32m /etc/rbfeeder.ini \e" "\e[1;35m It will contain your feeder key and station number \e[0;39m"
 echo -e "\e[1;35mVisit Radarbox Claims web page to claim the key and link station to yor account \e[0;39m"
 echo -e "\e[1;35mYou must login to your Radarbox account when visisting Claims page \e[0;39m"
-
+echo -e "\e[1;33mThe mlat-client has been installed. Configure your location (lat, lon, alt) to activate it. \e[0;39m"
+echo " "
