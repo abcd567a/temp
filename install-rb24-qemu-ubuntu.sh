@@ -37,8 +37,8 @@ chmod 644 ${NOBLE_ARM64_SOURCES_FILE}
 
 
 elif [[ ${OS_VER} == jammy ]]; then
-#echo -e "\e[1;32mAdding \"[arch=amd64]\" after \"deb\" to all lines in existing file \"sources.list\" ...\e[0;39m"
-#sed -i '/deb-src/!s/deb/deb [arch=amd64]/1' /etc/apt/sources.list
+echo -e "\e[1;32mAdding \"[arch=amd64]\" after \"deb\" to all lines in existing file \"sources.list\" ...\e[0;39m"
+sed -i 's/^deb http/deb [arch=amd64] http/' /etc/apt/sources.list
 
 echo -e "\e[1;32mCreating arm64 apt-source file \"ubuntu-ports-arm64.list\" ...\e[0;39m"
 JAMMY_ARM64_SOURCES_FILE=/etc/apt/sources.list.d/ubuntu-ports-arm64.list
