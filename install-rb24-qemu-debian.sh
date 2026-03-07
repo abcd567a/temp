@@ -25,9 +25,15 @@ echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeed
 sudo apt install -y rbfeeder
 sudo systemctl restart rbfeeder
 
-echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"
+echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.co                               m/abcd567a/ ...\e[0;39m"
+if [[ `lsb_release -sc` == bookworm ]]; then
+wget -O /tmp/python3-pyasyncore_1.0.2-3_all.deb http://http.us.debian.org/debian                               /pool/main/p/python-pyasyncore/python3-pyasyncore_1.0.2-3_all.deb
+sudo apt install -y /tmp/python3-pyasyncore_1.0.2-3_all.deb
+elif [[ `lsb_release -sc` == noble ]]; then
 sudo apt install -y python3-pyasyncore
-wget -O /tmp/mlat-client_0.2.13_trixie_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_trixie_amd64.deb || true
+fi
+
+wget -O /tmp/mlat-client_0.2.13_trixie_amd64.deb https://github.com/abcd567a/rbf                               eeder/releases/download/v1.0/mlat-client_0.2.13_trixie_amd64.deb
 sudo apt install -y /tmp/mlat-client_0.2.13_trixie_amd64.deb || true
 sudo apt-mark hold mlat-client || true
 sudo systemctl restart rbfeeder
