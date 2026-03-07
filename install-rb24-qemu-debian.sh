@@ -25,7 +25,7 @@ echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeed
 sudo apt install -y rbfeeder
 sudo systemctl restart rbfeeder
 
-echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.co                               m/abcd567a/ ...\e[0;39m"
+echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"
 if [[ `lsb_release -sc` == bookworm ]]; then
 wget -O /tmp/mlat-client_0.2.13_bookworm_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_bookworm_amd64.deb
 sudo apt install -y /tmp/mlat-client_0.2.13_bookworm_amd64.deb
