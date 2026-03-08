@@ -21,8 +21,8 @@ echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm 
 
 sudo apt update
 
-echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeeder:arm64 from RB24 repository ...\e[0;39m"; sleep 2
-sudo apt install -y rbfeeder
+echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder:arm64\" to nstalli rbfeeder from RB24 repository ...\e[0;39m"; sleep 2
+sudo apt install -y rbfeeder:arm64
 sudo systemctl restart rbfeeder
 
 echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"; sleep 2
@@ -44,7 +44,7 @@ echo -e "\e[1;35m(1) Plese check your file \e[1;32msudo nano /etc/rbfeeder.ini \
 It will contain your feeder key and station number \e[0;39m"
 echo ""
 echo -e "\e[1;35m(2) Command to check status:      \e[1;32m sudo systemctl status rbfeeder \e[0;39m"
-echo -e "\e[1;35m(3) Command to restart rbfeeder:  \e[1;32m sudo systemctl status rbfeeder \e[0;39m"
+echo -e "\e[1;35m(3) Command to restart rbfeeder:  \e[1;32m sudo systemctl restart rbfeeder \e[0;39m"
 echo ""
 echo -e "\e[1;33m(4) The mlat-client has been installed. 
 Configure your location (lat, lon, alt) to activate mlat. \e[0;39m"
