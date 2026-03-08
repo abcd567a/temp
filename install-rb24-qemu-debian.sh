@@ -40,9 +40,16 @@ sudo apt-mark hold mlat-client || true
 sudo systemctl restart rbfeeder
 
 echo " "
-echo -e "\e[1;35mPlese check your file \e[1;32m /etc/rbfeeder.ini \e" "\e[1;35m It will contain your feeder key and station number \e[0;39m"
-echo " "
-echo -e "\e[1;35mVisit Radarbox Claims web page to claim the key and link station to yor account \e[0;39m"
+echo -e "\e[1;35m(1) Plese check your file \e[1;32msudo nano /etc/rbfeeder.ini \e" "\e[1;35m 
+It will contain your feeder key and station number \e[0;39m"
+echo ""
+echo -e "\e[1;35m(2) Command to check status:      \e[1;32m sudo systemctl status rbfeeder \e[0;39m"
+echo -e "\e[1;35m(3) Command to restart rbfeeder:  \e[1;32m sudo systemctl status rbfeeder \e[0;39m"
+echo ""
+echo -e "\e[1;33m(4) The mlat-client has been installed. 
+Configure your location (lat, lon, alt) to activate mlat. \e[0;39m"
+echo ""
+echo -e "\e[1;35m(5) Visit Radarbox Claims web page to link station to yor account \e[0;39m"
 echo -e "\e[1;35mYou must login to your Radarbox account when visisting Claims page \e[0;39m"
-echo -e "\e[1;33mThe mlat-client has been installed. Configure your location (lat, lon, alt) to activate it. \e[0;39m"
+
 echo " "
