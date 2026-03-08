@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
-
+echo -e "\e[1;32mUpdating ...\e[0;39m"; sleep 2
 sudo apt update || true
 
-echo -e "\e[1;32mInstalling packages to provide QEMU support ...\e[0;39m"
+echo -e "\e[1;32mInstalling packages to provide QEMU support ...\e[0;39m"; sleep 2
 sudo apt -y install qemu-user qemu-user-binfmt binfmt-support
 
-echo -e "\e[1;32mAdding arhitecture arm64 to system ...\e[0;39m"
+echo -e "\e[1;32mAdding arhitecture arm64 to system ...\e[0;39m"; sleep 2
 sudo dpkg --add-architecture arm64
 sudo apt update
 
-echo -e "\e[1;32mInstalling package libc6:arm64 to provide ar m64 support ...\e[0;39m"
+echo -e "\e[1;32mInstalling package libc6:arm64 to provide arm64 support ...\e[0;39m"; sleep 2
 sudo apt -y install libc6:arm64
 
-echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"
+echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"; sleep 2
 sudo apt install -y dirmngr gnupg
 gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
 gpg --export --armor F2A8428D3C354953 | sudo gpg --dearmor -o /etc/apt/keyrings/rb24.gpg
@@ -21,11 +21,11 @@ echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm 
 
 sudo apt update
 
-echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeeder:arm64 from RB24 repository ...\e[0;39m"
+echo -e "\e[1;32mRunning command \"sudo apt install rbfeeder\" to nstalli rbfeeder:arm64 from RB24 repository ...\e[0;39m"; sleep 2
 sudo apt install -y rbfeeder
 sudo systemctl restart rbfeeder
 
-echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"
+echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"; sleep 2
 if [[ `lsb_release -sc` == bookworm ]]; then
 wget -O /tmp/mlat-client_0.2.13_bookworm_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_bookworm_amd64.deb
 sudo apt install -y /tmp/mlat-client_0.2.13_bookworm_amd64.deb
@@ -41,6 +41,7 @@ sudo systemctl restart rbfeeder
 
 echo " "
 echo -e "\e[1;35mPlese check your file \e[1;32m /etc/rbfeeder.ini \e" "\e[1;35m It will contain your feeder key and station number \e[0;39m"
+echo " "
 echo -e "\e[1;35mVisit Radarbox Claims web page to claim the key and link station to yor account \e[0;39m"
 echo -e "\e[1;35mYou must login to your Radarbox account when visisting Claims page \e[0;39m"
 echo -e "\e[1;33mThe mlat-client has been installed. Configure your location (lat, lon, alt) to activate it. \e[0;39m"
