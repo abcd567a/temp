@@ -30,7 +30,7 @@ if [[ `lsb_release -sc` == bookworm ]]; then
 wget -O /tmp/mlat-client_0.2.13_bookworm_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_bookworm_amd64.deb
 sudo apt install -y /tmp/mlat-client_0.2.13_bookworm_amd64.deb
 
-elif [[ `lsb_release -sc` == noble ]]; then
+elif [[ `lsb_release -sc` == trixie ]]; then
 sudo apt install -y python3-pyasyncore
 wget -O /tmp/mlat-client_0.2.13_trixie_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_trixie_amd64.deb
 sudo apt install -y /tmp/mlat-client_0.2.13_trixie_amd64.deb || true
