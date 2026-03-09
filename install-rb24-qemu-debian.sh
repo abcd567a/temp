@@ -40,6 +40,8 @@ sudo apt-mark hold mlat-client || true
 sudo systemctl restart rbfeeder
 
 echo " "
+echo -e "\e[1;32mTHE SCRIPT HAS COMPLETED INSTALLATION......\e[0;39m"
+echo " "
 echo -e "\e[1;35m(1) Plese check your file \e[1;32msudo nano /etc/rbfeeder.ini \e" "\e[1;35m 
 It will contain your feeder key and station number \e[0;39m"
 echo ""
@@ -51,5 +53,5 @@ Configure your location (lat, lon, alt) to activate mlat. \e[0;39m"
 echo ""
 echo -e "\e[1;35m(5) Visit Radarbox Claims web page to link station to yor account \e[0;39m"
 echo -e "\e[1;35mYou must login to your Radarbox account when visisting Claims page \e[0;39m"
-
 echo " "
+
