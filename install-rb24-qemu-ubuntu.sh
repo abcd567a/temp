@@ -5,7 +5,9 @@ OS_VER=`lsb_release -sc`
 echo -e "\e[1;32mUpdating ...\e[0;39m"; sleep 2
 apt update || true
 
-echo -e "\e[1;32mInstalling packages to provide QEMU support ...\e[0;39m"; sleep 2
+echo -e "\e[1;32mInstalling following packages to provide QEMU support ...
+   qemu-user  qemu-user-binfmt  binfmt-support\e[0;39m"; sleep 4
+
 apt -y install qemu-user qemu-user-binfmt binfmt-support
 
 
