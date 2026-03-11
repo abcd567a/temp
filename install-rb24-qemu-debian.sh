@@ -3,7 +3,9 @@ set -e
 echo -e "\e[1;32mUpdating ...\e[0;39m"; sleep 2
 sudo apt update || true
 
-echo -e "\e[1;32mInstalling packages to provide QEMU support ...\e[0;39m"; sleep 2
+echo -e "\e[1;32mInstalling following packages to provide QEMU support ...
+   qemu-user  qemu-user-binfmt  binfmt-support\e[0;39m"; sleep 4
+
 sudo apt -y install qemu-user qemu-user-binfmt binfmt-support
 
 echo -e "\e[1;32mAdding arhitecture arm64 to system ...\e[0;39m"; sleep 2
