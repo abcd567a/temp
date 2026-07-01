@@ -19,7 +19,12 @@ echo -e "\e[1;32mSetting up RB24 repository \e[0;39m"; sleep 2
 sudo apt install -y dirmngr gnupg
 gpg --keyserver keyserver.ubuntu.com --recv-keys F2A8428D3C354953
 gpg --export --armor F2A8428D3C354953 | sudo gpg --dearmor -o /etc/apt/keyrings/rb24.gpg
-echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm main" | sudo tee /etc/apt/sources.list.d/rb24.list
+
+if [[ `lsb_release -sc` == bookworm ]]; then
+   echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ bookworm main" | sudo tee /etc/apt/sources.list.d/rb24.list
+elif [[ `lsb_release -sc` == trixie ]]; then
+   echo "deb [signed-by=/etc/apt/keyrings/rb24.gpg] https://apt.rb24.com/ trixie main" | sudo tee /etc/apt/sources.list.d/rb24.list
+fi
 
 sudo apt update
 
