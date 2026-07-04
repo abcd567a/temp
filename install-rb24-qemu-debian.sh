@@ -34,17 +34,16 @@ apt install -y rbfeeder:arm64 || true
 apt --fix-broken install
 systemctl restart rbfeeder
 
-echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"; sleep 2
+echo -e "\e[1;32mInstalling package \"mlat-client\" ...\e[0;39m"; sleep 2
 if [[ `lsb_release -sc` == bookworm ]]; then
-wget -O /tmp/mlat-client_0.2.13_bookworm_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_bookworm_amd64.deb
-apt install -y /tmp/mlat-client_0.2.13_bookworm_amd64.deb || true
-apt --fix-broken install
+apt install -y mlat-client:arm64 || true
+apt --fix-broken install || true
 
 elif [[ `lsb_release -sc` == trixie ]]; then
-apt install -y python3-pyasyncore
-wget -O /tmp/mlat-client_0.2.13_trixie_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_trixie_amd64.deb
-apt install -y /tmp/mlat-client_0.2.13_trixie_amd64.deb || true
-apt --fix-broken install
+apt install -y python3-pyasyncore || true
+apt --fix-broken install || true
+apt install -y mlat-client:arm64 || true
+apt --fix-broken install || true
 fi
 
 apt-mark hold mlat-client || true
