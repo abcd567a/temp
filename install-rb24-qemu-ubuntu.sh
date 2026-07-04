@@ -64,6 +64,7 @@ apt update
 
 echo -e "\e[1;32mInstalling package libc6:arm64 to provide ar m64 support ...\e[0;39m"; sleep 2
 apt -y install libc6:arm64
+apt --fix-broken install
 
 if [[ ${OS_VER} == noble ]]; then
 echo -e "\e[1;32mDownloading & installing package \"librtlsdr0\" from Debian archieves ...\e[0;39m"; sleep 2
@@ -86,6 +87,7 @@ apt update
 
 echo -e "\e[1;32mRunning command \"apt install rbfeeder:arm64\" to nstalli rbfeeder from RB24 repository ...\e[0;39m"; sleep 2
 apt install -y rbfeeder:arm64
+apt --fix-broken install
 systemctl restart rbfeeder
 
 echo -e "\e[1;32mDownloading & installing package \"mlat-client\" from github.com/abcd567a/ ...\e[0;39m"; sleep 2
