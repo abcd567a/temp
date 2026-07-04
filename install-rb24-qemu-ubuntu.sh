@@ -86,7 +86,7 @@ fi
 apt update
 
 echo -e "\e[1;32mRunning command \"apt install rbfeeder:arm64\" to nstalli rbfeeder from RB24 repository ...\e[0;39m"; sleep 2
-apt install -y rbfeeder:arm64
+apt install -y rbfeeder:arm64 || true
 apt --fix-broken install
 systemctl restart rbfeeder
 
@@ -95,10 +95,12 @@ if [[ ${OS_VER} == noble ]]; then
 apt install -y python3-pyasyncore
 wget -O /tmp/mlat-client_0.2.13_noble_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_noble_amd64.deb || true
 apt install -y /tmp/mlat-client_0.2.13_noble_amd64.deb || true
+apt --fix-broken install
 
 elif [[ ${OS_VER} == jammy ]]; then
 wget -O /tmp/mlat-client_0.2.13_jammy_amd64.deb https://github.com/abcd567a/rbfeeder/releases/download/v1.0/mlat-client_0.2.13_jammy_amd64.deb
-apt install -y /tmp/mlat-client_0.2.13_jammy_amd64.deb
+apt install -y /tmp/mlat-client_0.2.13_jammy_amd64.deb || true
+apt --fix-broken install
 fi
 
 apt-mark hold mlat-client || true
