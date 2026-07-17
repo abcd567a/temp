@@ -196,6 +196,21 @@ sudo sed -i '/<div class="buttonContainer">/i <div id="GAIN" style="text-align:c
 ##############################################################
 ##############################################################
 
+if [[ ! -d "/usr/share/skyaware2" ]]; then
+echo "Creating independent skyaware2 folder required for set-gain of 2-receivers"
+cp -r /usr/share/skyaware /usr/share/skyaware2
+sed -i 's/\bskyaware\b/skyaware2/g' /etc/lighttpd/conf-available/89-skyaware2.conf
+fi
+
+if [[ -f "/etc/default/dump1090-fa2" ]]; then
+echo "Creating independent dump1090-fa2 binary required for set-gain of 2-receivers"
+cp /usr/bin/dump1090-fa /usr/bin/dump1090-fa2
+sed -i 's|exec /usr/bin/dump1090-fa|exec /usr/bin/dump1090-fa2|' /usr/share/dump1090-fa/start-dump1090-fa2
+fi
+
+
+
+
 echo "Creating folder gain2...."
 sudo mkdir -p /usr/local/sbin/gain2
 
