@@ -49,6 +49,7 @@ sed -i 's/^network_mode=.*/network_mode=true/' /etc/rbfeeder.ini
 echo "Creating User dump1090 to run dump1090-rb"
 adduser --system --no-create-home dump1090
 sudo usermod -aG plugdev dump1090
+wget -O /etc/udev/rules.d/rtl-sdr.rules https://github.com/abcd567a/temp/raw/main/rtl-sdr.rules
 
 echo "Assigning ownership of dedicated folder to user dump1090"
 sudo chown dump1090:nogroup -R ${DEDICATED_FOLDER}
