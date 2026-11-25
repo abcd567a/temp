@@ -7,7 +7,7 @@ mkdir -p ${DEDICATED_FOLDER}
 echo "Creating startup script file startup.sh"
 STARTUP_SCRIPT=${DEDICATED_FOLDER}/startup.sh
 touch ${STARTUP_SCRIPT}
-schmod 755 ${STARTUP_SCRIPT}
+chmod 755 ${STARTUP_SCRIPT}
 echo "Writing code to startup script file startup.sh"
 /bin/cat <<EOM >${STARTUP_SCRIPT}
 #!/bin/sh
@@ -90,7 +90,7 @@ echo -e "\e[1;32m=======================\e[0;39m"
 echo -e "\e[1;32mPLEASE DO FOLLOWING:\e[0;39m"
 echo -e "\e[1;32m=======================\e[0;39m"
 echo " "
--e "\e[1;33m(2) If you want to change Gain or device serial number, \e[0;39m"
+echo -e "\e[1;33m(2) If you want to change Gain or device serial number, \e[0;39m"
 echo -e "\e[1;33m(2) then open file /etc/default/dump1090-rb by following command:\e[0;39m"
 echo -e "\e[1;39m     sudo nano /etc/deault/dump1090-rb \e[0;39m"
 echo ""
